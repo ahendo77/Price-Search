@@ -37,12 +37,17 @@ def getprice_coinjar(coin = 'BTC' or 'XRP' or 'LTC' or 'XLM', type = 'ask' or 'b
 def check_margin(buy, sell):
     difference = (float(sell)) - (float(buy))
     margin = difference*100/(float(buy))
-    if margin >= 0.1:
+    if margin >= 0.5:
         list = [True, margin]
         return list
     else:
         list = [False, margin]
         return list
 
+def check_margin_size(margin):
+    if margin >= 0.5:
+        return 'Moderate'
+    elif margin >= 0.7:
+        return ''
 
         

@@ -11,6 +11,10 @@ import functions as fn
 start = 1
 s = time.localtime()
 start_time = time.strftime("%H:%M:%S", s)
+start_time2 = time.strftime("%H_%M_%S", s)
+
+output = open('output{}.csv'.format((str(start_time2)), 'x'))
+
 
 print('Price Discrepancy Search V2.0 by Alex Henderson\n')
 
@@ -167,14 +171,20 @@ while start == 0:
 
 
     #Begin Saving Data based on previous searches
-
-    try:
-        output = open('output_{}.csv'.format(start_time), 'x')
-    except:
-        pass
     
-    header = ['coin', 'margin', 'buy_price', 'sell_price', 'buy_exchange', 'sell_exchange',]
-    print(current_time)
+    field = ['coin', 'margin', 'buy_price', 'sell_price', 'buy_exchange', 'sell_exchange', 'time_found']
+    
+    if check_btc == True:
+        rows = {
+            'coin': 'BTC',
+            'margin': margin_btc,
+            'buy_price': btc_buy,
+            'sell_price': btc_sell,
+            'buy_exchange': exchange_btc['Buy'],
+            'sell_exchange': exchange_btc['Sell'],
+            'time_found': current_time
+        }
+        
 
 
 
