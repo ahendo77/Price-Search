@@ -9,7 +9,8 @@ import functions as fn
 
 
 start = 1
-starting_time = time.time()
+s = time.localtime()
+start_time = time.strftime("%H:%M:%S", s)
 
 print('Price Discrepancy Search V2.0 by Alex Henderson\n')
 
@@ -71,6 +72,9 @@ while start == 1:
         continue
 
 while start == 0:
+
+    t = time.localtime()
+    current_time = time.strftime("%H:%M:%S", t)
 
     #Searching for Bitcoin
 
@@ -165,12 +169,17 @@ while start == 0:
     #Begin Saving Data based on previous searches
 
     try:
-        output = open('output.csv', 'x')
+        output = open('output_{}.csv'.format(start_time), 'x')
     except:
-        output = open('output{}.csv'.format(+1))
+        pass
     
     header = ['coin', 'margin', 'buy_price', 'sell_price', 'buy_exchange', 'sell_exchange',]
-    
+    print(current_time)
+
+
+
+
+
 
 
 

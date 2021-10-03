@@ -41,8 +41,8 @@ def check_margin(buy, sell):
         list = [True, margin]
         return list
     else:
-        return False
+        list = [False, margin]
+        return list
 
-def capture(check):
-    if check == True:
-        pass
+
+        
