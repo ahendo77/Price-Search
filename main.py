@@ -2,12 +2,15 @@ import requests
 import json
 import time
 import csv
+import keyboard
 import functions as fn
 
 #Price Dicrepancy Search 
 #Version 2.0 by Alex Henderson
 
-
+minor_discrepancy = 0
+moderate_discrepancy = 0
+runs = 0
 start = 1
 s = time.localtime()
 start_time = time.strftime("%H:%M:%S", s)
@@ -19,7 +22,7 @@ except:
     print('Error: Something with the CSV, fuck if I know what')
 
 
-print('Price Discrepancy Search V2.0 by Alex Henderson\n')
+print('Price Discrepancy Search, Alpha V2.0 by Alex Henderson\n')
 
 print('Checking API Status...\n')
 
@@ -70,6 +73,7 @@ while start == 1:
     question = input('API Status OK, begin searching? Y/N\n')
     if question == 'y' or question == 'Y':
         print('\nNow Searching...','\n')
+        print('Search Initiated at:', start_time,'\n')
         start = 0
         break
     elif question == 'n' or question == 'N':
@@ -85,6 +89,7 @@ while start == 0:
 
     def sort(a):
         return a['price']
+
 
     #Searching for Bitcoin
 
@@ -242,11 +247,60 @@ while start == 0:
         'time_found': current_time
     }]
 
-    if margin_btc >= -0.1:
+    if margin_btc >= 0.5:
         csv_row(rows_btc)
-        break
+        moderate_discrepancy += 1
+        print('Discrepancy Found: BTC\n', 'Size:', rows_btc[0]['class'], '@', current_time,'\n')
+        continue
+    elif margin_btc >= 0.2:
+        minor_discrepancy += 1
+        continue
 
+    if margin_xrp >= 0.5:
+        csv_row(rows_xrp)
+        moderate_discrepancy += 1
+        print('Discrepancy Found: XRP\n', 'Size:', rows_xrp[0]['class'], '@', current_time,'\n')
+        continue
+    elif margin_xrp >= 0.2: 
+        minor_discrepancy += 1
+        continue
 
+    if margin_ltc >= 0.5:
+        csv_row(rows_ltc)
+        moderate_discrepancy += 1
+        print('Discrepancy Found: LTC\n', 'Size:', rows_ltc[0]['class'], '@', current_time,'\n')
+        continue 
+    elif margin_ltc >= 0.2:
+        minor_discrepancy += 1
+        continue
 
-   
+    if margin_xlm >= 0.5:
+        csv_row(rows_xlm)
+        moderate_discrepancy += 1
+        print('Discrepancy Found: XLM\n', 'Size:', rows_xlm[0]['class'], '@', current_time,'\n')
+        continue
+    elif margin_xlm >= 0.2:
+        minor_discrepancy =+1
+        continue
 
+    if margin_ada >= 0.5:
+        csv_row(rows_ada)
+        moderate_discrepancy += 1
+        print('Discrepancy Found: ADA\n', 'Size:', rows_ada[0]['class'], '@', current_time,'\n')
+        continue
+    elif margin_ada >= 0.2:
+        minor_discrepancy += 1
+        continue 
+
+    runs += 1
+  
+    if runs >= 50:
+        print('Moderate Discrepancies Found:', moderate_discrepancy,'\n')
+        print('Minor Discrepancies Found:', minor_discrepancy,'\n')
+        continue
+    elif runs >= 100:
+        print('Search Started:', start_time,'\n')
+        print('Moderate Discrepancies Found:', moderate_discrepancy,'\n')
+        print('Minor Discrepancies Found:', minor_discrepancy,'\n')
+        runs = 0
+        continue

@@ -1,10 +1,7 @@
 import time
 import json
 import requests
-import csv
-
-
-start_time = time.time()
+import keyboard
 
 #coins = bitcoin, ripple, litecoin, stellar, cardano
 #codes = btc, xrp, ltc, xlm(str for coinspot), ada
@@ -46,9 +43,7 @@ def check_margin(buy, sell):
         return list
 
 def check_margin_size(margin):
-    if margin >= -0.001:
-        return 'Test'
-    elif margin >= 0.001:
+    if margin >= 0.5:
         return 'Minor'
     elif margin >= 0.7:
         return 'Moderate'
@@ -62,4 +57,7 @@ def check_margin_size(margin):
         return 'Well fuck me'
     elif margin >= 10:
         return 'Brb buying a lambo'
+
+
+    
 
