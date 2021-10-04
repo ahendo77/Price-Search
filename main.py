@@ -13,7 +13,10 @@ s = time.localtime()
 start_time = time.strftime("%H:%M:%S", s)
 start_time2 = time.strftime("%H_%M_%S", s)
 
-output = open('output{}.csv'.format((str(start_time2)), 'x'))
+try:
+    output = open('output{}.csv'.format(start_time2), 'x')
+except:
+    print('Error: Something with the CSV, fuck if I know what')
 
 
 print('Price Discrepancy Search V2.0 by Alex Henderson\n')
@@ -80,24 +83,27 @@ while start == 0:
     t = time.localtime()
     current_time = time.strftime("%H:%M:%S", t)
 
+    def sort(a):
+        return a['price']
+
     #Searching for Bitcoin
 
     #Gets Bitcoin Buy Price and Sorts Prices with cheapest in first place
-    btc_buy = [fn.getprice_coinspot('btc', 'ask')[0], fn.getprice_swiftx('BTC', 'buy')[0], fn.getprice_coinjar('BTC', 'ask')[0]]
-    btc_buy.sort(reverse= False)
-    
+    btc_buy = [fn.getprice_coinspot('btc', 'ask'), fn.getprice_swiftx('BTC', 'buy'), fn.getprice_coinjar('BTC', 'ask')]
+    btc_buy.sort(reverse= False, key= sort)
+
     #Gets Bitcoin Sell price and sorts with best in first place
-    btc_sell = [fn.getprice_coinspot('btc', 'bid')[0], fn.getprice_swiftx('BTC', 'sell')[0], fn.getprice_coinjar('BTC', 'bid')[0]]
-    btc_sell.sort(reverse = True)
+    btc_sell = [fn.getprice_coinspot('btc', 'bid'), fn.getprice_swiftx('BTC', 'sell'), fn.getprice_coinjar('BTC', 'bid')]
+    btc_sell.sort(reverse = True, key=sort)
 
     #Check variable calls check_margin from functions and saves True or False depending on whether margin is larger than 0.1
-    check_btc = fn.check_margin(btc_buy[0], btc_sell[0])[0]
+    check_btc = fn.check_margin(btc_buy[0]['price'], btc_sell[0]['price'])[0]
 
     #Margin variable calls check_margin from functions and saves the profit margin
-    margin_btc = fn.check_margin(btc_buy[0], btc_sell[0])[1]
+    margin_btc = fn.check_margin(btc_buy[0]['price'], btc_sell[0]['price'])[1]
 
     #Exchange Variable creates dictionary with which exchange the appropriate buy and sell price can be found on
-    exchange_btc = {'Buy': btc_buy[0][1], 'Sell': btc_sell[0][1]}
+    exchange_btc = {'Buy': btc_buy[0]['exchange'], 'Sell': btc_sell[0]['exchange']}
 
 
 
@@ -105,17 +111,17 @@ while start == 0:
 
     #See above comments for description
 
-    xrp_buy = [fn.getprice_coinspot('xrp', 'ask')[0], fn.getprice_swiftx('XRP', 'buy')[0], fn.getprice_coinjar('XRP', 'ask')[0]]
-    xrp_buy.sort(reverse= False)
+    xrp_buy = [fn.getprice_coinspot('xrp', 'ask'), fn.getprice_swiftx('XRP', 'buy'), fn.getprice_coinjar('XRP', 'ask')]
+    xrp_buy.sort(reverse= False, key= sort)
 
-    xrp_sell = [fn.getprice_coinspot('xrp', 'bid')[0], fn.getprice_swiftx('XRP', 'sell')[0], fn.getprice_coinjar('XRP', 'bid')[0]]
-    xrp_sell.sort(reverse= True)
+    xrp_sell = [fn.getprice_coinspot('xrp', 'bid'), fn.getprice_swiftx('XRP', 'sell'), fn.getprice_coinjar('XRP', 'bid')]
+    xrp_sell.sort(reverse= True, key=sort)
 
-    check_xrp = fn.check_margin(xrp_buy[0], xrp_sell[0])[0]
+    check_xrp = fn.check_margin(xrp_buy[0]['price'], xrp_sell[0]['price'])[0]
 
-    margin_xrp = fn.check_margin(xrp_buy[0], xrp_sell[0])[1]
+    margin_xrp = fn.check_margin(xrp_buy[0]['price'], xrp_sell[0]['price'])[1]
 
-    exchange_xrp = {'Buy': xrp_buy[0][1], 'Sell': xrp_sell[0][1]}
+    exchange_xrp = {'Buy': xrp_buy[0]['exchange'], 'Sell': xrp_sell[0]['exchange']}
 
 
 
@@ -123,83 +129,124 @@ while start == 0:
 
     #See above comments for description
 
-    ltc_buy = [fn.getprice_coinspot('ltc', 'ask')[0], fn.getprice_swiftx('LTC', 'buy')[0], fn.getprice_coinjar('LTC', 'ask')[0]]
-    ltc_buy.sort(reverse= False)
+    ltc_buy = [fn.getprice_coinspot('ltc', 'ask'), fn.getprice_swiftx('LTC', 'buy'), fn.getprice_coinjar('LTC', 'ask')]
+    ltc_buy.sort(reverse= False, key =sort)
 
-    ltc_sell = [fn.getprice_coinspot('ltc', 'bid')[0], fn.getprice_swiftx('LTC', 'sell')[0], fn.getprice_coinjar('LTC', 'bid')[0]]
-    ltc_sell.sort(reverse= True)
+    ltc_sell = [fn.getprice_coinspot('ltc', 'bid'), fn.getprice_swiftx('LTC', 'sell'), fn.getprice_coinjar('LTC', 'bid')]
+    ltc_sell.sort(reverse= True, key = sort)
 
-    check_ltc = fn.check_margin(ltc_buy[0], ltc_sell[0])[0]
+    check_ltc = fn.check_margin(ltc_buy[0]['price'], ltc_sell[0]['price'])[0]
 
-    margin_ltc = fn.check_margin(ltc_buy[0], ltc_sell[0])[1]
+    margin_ltc = fn.check_margin(ltc_buy[0]['price'], ltc_sell[0]['price'])[1]
 
-    exchange_ltc = {'Buy': ltc_buy[0][1], 'Sell': ltc_sell[0][1]}
+    exchange_ltc = {'Buy': ltc_buy[0]['exchange'], 'Sell': ltc_sell[0]['exchange']}
     
     
     #Searching for Stellar 
 
     #See above comments for description
 
-    xlm_buy = [fn.getprice_coinspot('str', 'ask')[0], fn.getprice_swiftx('XLM', 'buy')[0], fn.getprice_coinjar('XLM', 'ask')[0]]
-    xlm_buy.sort(reverse= False)
+    xlm_buy = [fn.getprice_coinspot('str', 'ask'), fn.getprice_swiftx('XLM', 'buy'), fn.getprice_coinjar('XLM', 'ask')]
+    xlm_buy.sort(reverse= False, key=sort)
 
-    xlm_sell = [fn.getprice_coinspot('str', 'bid')[0], fn.getprice_swiftx('XLM', 'sell')[0], fn.getprice_coinjar('XLM', 'bid')[0]]
-    xlm_sell.sort(reverse= True)
+    xlm_sell = [fn.getprice_coinspot('str', 'bid'), fn.getprice_swiftx('XLM', 'sell'), fn.getprice_coinjar('XLM', 'bid')]
+    xlm_sell.sort(reverse= True, key=sort)
 
-    check_xlm = fn.check_margin(xlm_buy[0], xlm_sell[0])[0]
+    check_xlm = fn.check_margin(xlm_buy[0]['price'], xlm_sell[0]['price'])[0]
 
-    margin_xlm = fn.check_margin(xlm_buy[0], xlm_sell[0])[1]
+    margin_xlm = fn.check_margin(xlm_buy[0]['price'], xlm_sell[0]['price'])[1]
 
-    exchange_xlm = {'Buy': xlm_buy[0][1], 'Sell': xlm_sell[0][1]}
+    exchange_xlm = {'Buy': xlm_buy[0]['exchange'], 'Sell': xlm_sell[0]['exchange']}
 
     
     #Searching for Cardano
 
     #See above comments for description 
 
-    ada_buy = [fn.getprice_coinspot('ada', 'ask')[0], fn.getprice_swiftx('ADA', 'buy')[0]]
-    ada_buy.sort(reverse= False)
+    ada_buy = [fn.getprice_coinspot('ada', 'ask'), fn.getprice_swiftx('ADA', 'buy')]
+    ada_buy.sort(reverse= False, key=sort)
 
-    ada_sell = [fn.getprice_coinspot('ada', 'bid')[0], fn.getprice_swiftx('ADA', 'sell')[0]]
-    ada_sell.sort(reverse= True)
+    ada_sell = [fn.getprice_coinspot('ada', 'bid'), fn.getprice_swiftx('ADA', 'sell')]
+    ada_sell.sort(reverse= True, key=sort)
 
-    check_ada = fn.check_margin(ada_buy[0], ada_sell[0])[0]
+    check_ada = fn.check_margin(ada_buy[0]['price'], ada_sell[0]['price'])[0]
 
-    margin_ada = fn.check_margin(ada_buy[0], ada_sell[0])[1]
+    margin_ada = fn.check_margin(ada_buy[0]['price'], ada_sell[0]['price'])[1]
 
-    exchange_ada = {'Buy': ada_buy[0][1], 'Sell': ada_sell[0][1]}
+    exchange_ada = {'Buy': ada_buy[0]['exchange'], 'Sell': ada_sell[0]['exchange']}
 
 
     #Begin Saving Data based on previous searches
     
-    field = ['coin', 'margin', 'buy_price', 'sell_price', 'buy_exchange', 'sell_exchange', 'time_found']
+    field = ['coin', 'margin', 'class', 'buy_price', 'sell_price', 'buy_exchange', 'sell_exchange', 'time_found']
     
-    if check_btc == True:
-        rows = {
-            'coin': 'BTC',
-            'margin': margin_btc,
-            'buy_price': btc_buy,
-            'sell_price': btc_sell,
-            'buy_exchange': exchange_btc['Buy'],
-            'sell_exchange': exchange_btc['Sell'],
-            'time_found': current_time
-        }
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def csv_row(rows):
+        with open('output{}.csv'.format(start_time2), 'w', encoding = 'UTF8') as f:
+            writer = csv.DictWriter(f, fieldnames = field)
+            writer.writeheader()
+            writer.writerows(rows)
 
     
+    rows_btc = [{
+        'coin': 'BTC',
+        'margin': margin_btc,
+        'class': fn.check_margin_size(margin_btc),
+        'buy_price': btc_buy[0]['price'],
+        'sell_price': btc_sell[0]['price'],
+        'buy_exchange': exchange_btc['Buy'],
+        'sell_exchange': exchange_btc['Sell'],
+        'time_found': current_time
+        }]
     
+    rows_xrp = [{
+        'coin': 'XRP',
+        'margin': margin_xrp,
+        'class': fn.check_margin_size(margin_xrp),
+        'buy_price': xrp_buy[0]['price'],
+        'sell_price': xrp_sell[0]['price'],
+        'buy_exchange': exchange_xrp['Buy'],
+        'sell_exchange': exchange_xrp['Sell'],
+        'time_found': current_time
+    }]
 
+    rows_ltc = [{
+        'coin': 'LTC',
+        'margin': margin_ltc,
+        'class': fn.check_margin_size(margin_ltc),
+        'buy_price': ltc_buy[0]['price'],
+        'sell_price': ltc_sell[0]['price'],
+        'buy_exchange': exchange_ltc['Buy'],
+        'sell_exchange': exchange_ltc['Sell'],
+        'time_found': current_time
+    }]
+    
+    rows_xlm = [{
+        'coin': 'XLM',
+        'margin': margin_xlm,
+        'class': fn.check_margin_size(margin_xlm),
+        'buy_price': xlm_buy[0]['price'],
+        'sell_price': xlm_sell[0]['price'],
+        'buy_exchange': exchange_xlm['Buy'],
+        'sell_exchange': exchange_xlm['Sell'],
+        'time_found': current_time
+    }]
+
+    rows_ada = [{
+        'coin': 'ADA',
+        'margin': margin_ada,
+        'class': fn.check_margin_size(margin_ada),
+        'buy_price': ada_buy[0]['price'],
+        'sell_price': ada_sell[0]['price'],
+        'buy_exchange': exchange_ada['Buy'],
+        'sell_exchange': exchange_ada['Sell'],
+        'time_found': current_time
+    }]
+
+    if margin_btc >= -0.1:
+        csv_row(rows_btc)
+        break
+
+
+
+   
 
