@@ -22,7 +22,7 @@ except:
     print('Error: Something with the CSV, fuck if I know what')
 
 
-print('Price Discrepancy Search by Alex Henderson')
+print('Price Discrepancy Search by ahend')
 print('V2.0 Alpha\n')
 
 print('Checking API Status...\n')
