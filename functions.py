@@ -57,7 +57,3 @@ def check_margin_size(margin):
         return 'Well fuck me'
     elif margin >= 10:
         return 'Brb buying a lambo'
-
-
-    
-
