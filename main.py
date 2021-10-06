@@ -6,7 +6,7 @@ import keyboard
 import functions as fn
 
 #Price Dicrepancy Search 
-#Version 2.0 by Alex Henderson
+#Version Alpha 2.0 by ahendo
 
 minor_discrepancy = 0
 moderate_discrepancy = 0
@@ -22,7 +22,8 @@ except:
     print('Error: Something with the CSV, fuck if I know what')
 
 
-print('Price Discrepancy Search, Alpha V2.0 by Alex Henderson\n')
+print('Price Discrepancy Search by Alex Henderson')
+print('V2.0 Alpha\n')
 
 print('Checking API Status...\n')
 
@@ -249,8 +250,8 @@ while start == 0:
 
     if margin_btc >= 0.5:
         csv_row(rows_btc)
-        moderate_discrepancy += 1
         print('Discrepancy Found: BTC\n', 'Size:', rows_btc[0]['class'], '@', current_time,'\n')
+        moderate_discrepancy += 1
         continue
     elif margin_btc >= 0.2:
         minor_discrepancy += 1
@@ -258,8 +259,8 @@ while start == 0:
 
     if margin_xrp >= 0.5:
         csv_row(rows_xrp)
-        moderate_discrepancy += 1
         print('Discrepancy Found: XRP\n', 'Size:', rows_xrp[0]['class'], '@', current_time,'\n')
+        moderate_discrepancy += 1
         continue
     elif margin_xrp >= 0.2: 
         minor_discrepancy += 1
@@ -267,8 +268,8 @@ while start == 0:
 
     if margin_ltc >= 0.5:
         csv_row(rows_ltc)
-        moderate_discrepancy += 1
         print('Discrepancy Found: LTC\n', 'Size:', rows_ltc[0]['class'], '@', current_time,'\n')
+        moderate_discrepancy += 1
         continue 
     elif margin_ltc >= 0.2:
         minor_discrepancy += 1
@@ -276,8 +277,8 @@ while start == 0:
 
     if margin_xlm >= 0.5:
         csv_row(rows_xlm)
-        moderate_discrepancy += 1
         print('Discrepancy Found: XLM\n', 'Size:', rows_xlm[0]['class'], '@', current_time,'\n')
+        moderate_discrepancy += 1
         continue
     elif margin_xlm >= 0.2:
         minor_discrepancy =+1
@@ -285,8 +286,8 @@ while start == 0:
 
     if margin_ada >= 0.5:
         csv_row(rows_ada)
-        moderate_discrepancy += 1
         print('Discrepancy Found: ADA\n', 'Size:', rows_ada[0]['class'], '@', current_time,'\n')
+        moderate_discrepancy += 1
         continue
     elif margin_ada >= 0.2:
         minor_discrepancy += 1
@@ -294,13 +295,13 @@ while start == 0:
 
     runs += 1
   
-    if runs >= 50:
-        print('Moderate Discrepancies Found:', moderate_discrepancy,'\n')
+    if runs == 50:
+        print('Moderate Discrepancies Found:', moderate_discrepancy)
         print('Minor Discrepancies Found:', minor_discrepancy,'\n')
         continue
-    elif runs >= 100:
-        print('Search Started:', start_time,'\n')
-        print('Moderate Discrepancies Found:', moderate_discrepancy,'\n')
+    elif runs == 100:
+        print('Search Started:', start_time)
+        print('Moderate Discrepancies Found:', moderate_discrepancy)
         print('Minor Discrepancies Found:', minor_discrepancy,'\n')
         runs = 0
         continue
