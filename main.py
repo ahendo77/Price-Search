@@ -6,7 +6,7 @@ import keyboard
 import functions as fn
 
 #Price Dicrepancy Search 
-#Version Alpha 2.0 by ahendo
+#Version Alpha 2.0 by Alex Henderson
 
 minor_discrepancy = 0
 moderate_discrepancy = 0
@@ -21,8 +21,13 @@ try:
 except:
     print('Error: Something with the CSV, fuck if I know what')
 
+field = ['coin', 'margin', 'class', 'buy_price', 'sell_price', 'buy_exchange', 'sell_exchange', 'time_found']
 
-print('Price Discrepancy Search by ahend')
+with open('output{}.csv'.format(start_time2), 'w', encoding = 'UTF8') as f:
+    writer = csv.DictWriter(f, fieldnames = field)
+    writer.writeheader()
+
+print('Price Discrepancy Search by Alex Henderson')
 print('V2.0 Alpha\n')
 
 print('Checking API Status...\n')
@@ -184,19 +189,17 @@ while start == 0:
 
     #Begin Saving Data based on previous searches
     
-    field = ['coin', 'margin', 'class', 'buy_price', 'sell_price', 'buy_exchange', 'sell_exchange', 'time_found']
-    
     def csv_row(rows):
-        with open('output{}.csv'.format(start_time2), 'w', encoding = 'UTF8') as f:
+        with open('output{}.csv'.format(start_time2), 'a', encoding = 'UTF8') as f:
             writer = csv.DictWriter(f, fieldnames = field)
-            writer.writeheader()
             writer.writerows(rows)
 
-    
+    #Format Discrepancy Data into usable dictionaries
+
     rows_btc = [{
         'coin': 'BTC',
         'margin': margin_btc,
-        'class': fn.check_margin_size(margin_btc),
+        'class': fn.check_margin_size(margin_btc), #Class here refers to the 'size' of any given discrepancy catagorised in functions.py
         'buy_price': btc_buy[0]['price'],
         'sell_price': btc_sell[0]['price'],
         'buy_exchange': exchange_btc['Buy'],
@@ -218,7 +221,7 @@ while start == 0:
     rows_ltc = [{
         'coin': 'LTC',
         'margin': margin_ltc,
-        'class': fn.check_margin_size(margin_ltc),
+        'class': fn.check_margin_size(margin_ltc), 
         'buy_price': ltc_buy[0]['price'],
         'sell_price': ltc_sell[0]['price'],
         'buy_exchange': exchange_ltc['Buy'],
@@ -247,6 +250,9 @@ while start == 0:
         'sell_exchange': exchange_ada['Sell'],
         'time_found': current_time
     }]
+
+    # Check Profit Margin data to determine whether a discrepany has been found and
+    # calls the csv write function with the data stored in the given pricing dictionary at that time
 
     if margin_btc >= 0.5:
         csv_row(rows_btc)
