@@ -6,7 +6,7 @@ import keyboard
 import functions as fn
 
 #Price Dicrepancy Search 
-#Version Alpha 2.0 by Alex Henderson
+#Version Alpha 1.0.0 by Alex Henderson
 
 minor_discrepancy = 0
 moderate_discrepancy = 0
@@ -28,7 +28,7 @@ with open('output{}.csv'.format(start_time2), 'w', encoding = 'UTF8') as f:
     writer.writeheader()
 
 print('Price Discrepancy Search by Alex Henderson')
-print('V2.0 Alpha\n')
+print('V1.0.0 Alpha\n')
 
 print('Checking API Status...\n')
 
