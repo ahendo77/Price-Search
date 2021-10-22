@@ -5,7 +5,7 @@ import csv
 import functions as fn
 
 #Price Dicrepancy Search 
-#Version Alpha 1.0.0 by Alex Henderson
+#Version Alpha 1.1.0 by Alex Henderson
 
 
 def main():
@@ -29,7 +29,7 @@ def main():
         writer.writeheader()
     
     print('Price Discrepancy Search by Alex Henderson')
-    print('V1.0.0 Alpha\n')
+    print('V1.1.0 Alpha\n')
     
     print('Checking API Status...\n')
 
