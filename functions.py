@@ -6,6 +6,48 @@ import keyboard
 #coins = bitcoin, ripple, litecoin, stellar, cardano
 #codes = btc, xrp, ltc, xlm(str for coinspot), ada
 
+#Check API Status of Exchanges
+
+def checkstatus_coinspot():
+    status_get2 = requests.get('https://www.coinspot.com.au/pubapi/v2/latest').text
+    status2 = requests.get('https://www.coinspot.com.au/pubapi/v2/latest')
+    coinspot_status1 = json.loads(status_get2)
+    coinspot_status2 = coinspot_status1['status']
+    
+    if coinspot_status2 == 'ok' and status2.status_code == 200:
+        print('Coinspot API Status: GOOD')
+    else:
+        print('Coinspot API Status: ERROR')
+        exit()
+
+def checkstatus_coinjar():
+    status_get3 = requests.get('https://data.exchange.coinjar.com/products/BTCAUD/ticker')
+    if status_get3.status_code == 200:
+        print('CoinJar API Status: GOOD')
+    else:
+        print('CoinJar API Status: ERROR')
+        exit()
+
+def checkstatus_swiftx():
+    status_get = requests.get('https://api.swyftx.com.au/info/').text
+    status1 = requests.get('https://api.swyftx.com.au/info/')
+    swiftx_status = json.loads(status_get)
+    swiftx_maintain = swiftx_status['maintenanceMode']
+    swiftx_state = swiftx_status['state']
+    swiftx_api = 'blank'
+    
+    if swiftx_maintain == False and swiftx_state == 1 and status1.status_code == 200:
+        swiftx_api = 'good'
+    else:
+        swiftx_api = 'bad'
+    
+    if swiftx_api == 'good':
+        print('Swiftx API Status: GOOD')
+    else:
+        print('Swiftx API Status: ERROR')
+        exit()
+
+
 #Getting Prices from Exchanges
 
 def getprice_coinspot(coin = 'btc' or 'xrp' or 'ltc' or 'str' or 'ada', type = 'ask' or 'bid'):
