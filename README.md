@@ -14,7 +14,7 @@ found.
 
 ## In Progress
 - [ ] A robust and detailed system for tracking and recording discrepancies
-- [ ] Comparisons between more assests and more markets
+- [ ] Comparisons between more assets and more markets
 - [ ] Statistics Database to be built from collected data showcasing key infomation
 
 ## Long Term Goals
