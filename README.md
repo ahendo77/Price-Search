@@ -1,5 +1,5 @@
 # Price-Search
-Price Search is a market reseach bot that crawls pricing data to determine the frequency and extent of arbitage trading opportunities in Australian Crypto markets.
+Price Search is a market research bot that crawls pricing data to determine the frequency and extent of arbitage trading opportunities in Australian Crypto markets.
 An arbitage trade is a discrepancy in pricing where an asset can be sold on one exchange for more than it can be purchased on another. This bot aims to find and catalouge
 these discrepancies as they occur with the eventual goal of collecting a dataset large enough to assess the size, frequency and market conditions in which these trades can be
 found. 
