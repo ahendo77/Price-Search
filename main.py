@@ -8,6 +8,21 @@ import functions as fn
 #Version Alpha 1.1.0 by Alex Henderson
 
 
+def create_csv(): #Creates csv output file to place record discrepancies and writes header fields 
+    s = time.localtime()
+    start_time2 = time.strftime("%H_%M_%S", s) #Underscores used for csv file name
+    
+    try:
+        open('output{}.csv'.format(start_time2), 'x') #Used to be output = open, removed cause not needed (I think?)
+    except:
+        print('Error: Something with the CSV, fuck if I know what')
+
+    field = ['coin', 'margin', 'class', 'buy_price', 'sell_price', 'buy_exchange', 'sell_exchange', 'time_found', 'discrepancy_no']
+    
+    with open('output{}.csv'.format(start_time2), 'w', encoding = 'UTF8') as f:
+        writer = csv.DictWriter(f, fieldnames = field)
+        writer.writeheader()
+
 def main():
     minor_discrepancy = 0
     moderate_discrepancy = 0
@@ -16,17 +31,9 @@ def main():
     s = time.localtime()
     start_time = time.strftime("%H:%M:%S", s)
     start_time2 = time.strftime("%H_%M_%S", s) #Underscores used for csv file name
-    
-    try:
-        output = open('output{}.csv'.format(start_time2), 'x')
-    except:
-        print('Error: Something with the CSV, fuck if I know what')
-    
     field = ['coin', 'margin', 'class', 'buy_price', 'sell_price', 'buy_exchange', 'sell_exchange', 'time_found', 'discrepancy_no']
 
-    with open('output{}.csv'.format(start_time2), 'w', encoding = 'UTF8') as f:
-        writer = csv.DictWriter(f, fieldnames = field)
-        writer.writeheader()
+    create_csv()
 
     while start == 0:
         t = time.localtime()

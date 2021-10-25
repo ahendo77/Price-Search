@@ -27,7 +27,8 @@ def user_input():
         elif question == 'n' or question == 'N':
             exit()
         else:
-            print('Please enter y or n\n')
+            print('Please enter y or n')
+            question = input()
             continue
 
 
