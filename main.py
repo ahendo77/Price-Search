@@ -2,11 +2,11 @@ import requests
 import json
 import time
 import csv
+import threading
 import functions as fn
 
 #Price Dicrepancy Search 
 #Version Alpha 1.1.0 by Alex Henderson
-
 
 def create_csv(): #Creates csv output file to place record discrepancies and writes header fields 
     s = time.localtime()
@@ -24,6 +24,7 @@ def create_csv(): #Creates csv output file to place record discrepancies and wri
         writer.writeheader()
 
 def main():
+    global moderate_discrepancy
     minor_discrepancy = 0
     moderate_discrepancy = 0
     runs = 0

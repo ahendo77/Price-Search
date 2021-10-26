@@ -1,15 +1,12 @@
 import time
 import json
 import requests
-import keyboard
-
 
 #Price Dicrepancy Search 
 #Version Alpha 1.1.0 by Alex Henderson
 
 #coins = bitcoin, ripple, litecoin, stellar, cardano
 #codes = btc, xrp, ltc, xlm(str for coinspot), ada
-
 
 #Starting the Program
 
