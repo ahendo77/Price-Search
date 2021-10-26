@@ -6,8 +6,6 @@ import keyboard
 #coins = bitcoin, ripple, litecoin, stellar, cardano
 #codes = btc, xrp, ltc, xlm(str for coinspot), ada
 
-<<<<<<< Updated upstream
-=======
 #Starting the Program
 
 def user_input():
@@ -28,7 +26,6 @@ def user_input():
             continue
 
 
->>>>>>> Stashed changes
 #Check API Status of Exchanges
 
 def checkstatus_coinspot():
