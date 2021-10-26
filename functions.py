@@ -3,7 +3,7 @@ import json
 import requests
 
 #Price-Search Copyright (C) 2021  Alex Henderson
-#Version Alpha 1.1.0
+#Version Alpha 1.2.0
 
 #coins = bitcoin, ripple, litecoin, stellar, cardano
 #codes = btc, xrp, ltc, xlm(str for coinspot), ada

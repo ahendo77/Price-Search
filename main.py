@@ -6,7 +6,7 @@ import threading
 import functions as fn
 
 #Price-Search Copyright (C) 2021  Alex Henderson
-#Version Alpha 1.1.0
+#Version Alpha 1.2.0
 
 def create_csv(): #Creates csv output file to place record discrepancies and writes header fields 
     s = time.localtime()
