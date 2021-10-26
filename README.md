@@ -5,10 +5,11 @@ these discrepancies as they occur with the eventual goal of collecting a dataset
 found. 
 
 ## Features
-### Latest Release: v1.1.0-alpha
+### Latest Release: v1.2.0-alpha
 - Actively searches three markets Coinspot, Coinjar and Swiftx
 - Supports 5 assests: Bitcoin, Ripple, Litecoin, Stellar and Cardano*
 - Large enough discrepancies will print to CLI and output to a CSV
+- Exit with CTRL + C to view key infomation and stop search
 
 **Cardano is not sold on Coinjar, comparisons will be made between Swiftx and CoinSpot*
 
