@@ -3,8 +3,8 @@ import main as m
 import functions as fn
 import signal
 
-#Price Dicrepancy Search 
-#Version Alpha 1.1.0 by Alex Henderson
+#Price-Search Copyright (C) 2021  Alex Henderson
+#Version Alpha 1.1.0
 
 
 def exit_handler(signum, frame):
@@ -28,7 +28,7 @@ def exit_handler(signum, frame):
 signal.signal(signal.SIGINT, exit_handler)
 
 if __name__ == '__main__':
-    print('Price Discrepancy Search by Alex Henderson')
+    print('Price-Search Copyright (C) 2021  Alex Henderson')
     print('V1.1.0 Alpha\n')
     print('Checking API Status...\n')
     fn.checkstatus_coinspot()

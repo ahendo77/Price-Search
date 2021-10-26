@@ -2,8 +2,8 @@ import time
 import json
 import requests
 
-#Price Dicrepancy Search 
-#Version Alpha 1.1.0 by Alex Henderson
+#Price-Search Copyright (C) 2021  Alex Henderson
+#Version Alpha 1.1.0
 
 #coins = bitcoin, ripple, litecoin, stellar, cardano
 #codes = btc, xrp, ltc, xlm(str for coinspot), ada
