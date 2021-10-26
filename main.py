@@ -2,55 +2,40 @@ import requests
 import json
 import time
 import csv
+import threading
 import functions as fn
 
 #Price Dicrepancy Search 
 #Version Alpha 1.1.0 by Alex Henderson
 
-
-def main():
-    minor_discrepancy = 0
-    moderate_discrepancy = 0
-    runs = 0
-    start = 1
+def create_csv(): #Creates csv output file to place record discrepancies and writes header fields 
     s = time.localtime()
-    start_time = time.strftime("%H:%M:%S", s)
-    start_time2 = time.strftime("%H_%M_%S", s)
+    start_time2 = time.strftime("%H_%M_%S", s) #Underscores used for csv file name
     
     try:
-        output = open('output{}.csv'.format(start_time2), 'x')
+        open('output{}.csv'.format(start_time2), 'x') #Used to be output = open, removed cause not needed (I think?)
     except:
         print('Error: Something with the CSV, fuck if I know what')
-    
-    field = ['coin', 'margin', 'class', 'buy_price', 'sell_price', 'buy_exchange', 'sell_exchange', 'time_found', 'discrepancy_no']
 
+    field = ['coin', 'margin', 'class', 'buy_price', 'sell_price', 'buy_exchange', 'sell_exchange', 'time_found', 'discrepancy_no']
+    
     with open('output{}.csv'.format(start_time2), 'w', encoding = 'UTF8') as f:
         writer = csv.DictWriter(f, fieldnames = field)
         writer.writeheader()
-    
-    print('Price Discrepancy Search by Alex Henderson')
-    print('V1.1.0 Alpha\n')
-    
-    print('Checking API Status...\n')
 
-    #Calls API Status check functions from functions.py
-    fn.checkstatus_coinspot()
-    fn.checkstatus_coinjar()
-    fn.checkstatus_swiftx()
-    
-    while start == 1:
-        question = input('\nAPI Status OK, begin searching? Y/N\n')
-        if question == 'y' or question == 'Y':
-            print('\nNow Searching...','\n')
-            print('Search Initiated at:', start_time,'\n')
-            start = 0
-            break
-        elif question == 'n' or question == 'N':
-            exit()
-        else:
-            print('Please enter y or n\n')
-            continue
-    
+def main():
+    global moderate_discrepancy
+    minor_discrepancy = 0
+    moderate_discrepancy = 0
+    runs = 0
+    start = 0
+    s = time.localtime()
+    start_time = time.strftime("%H:%M:%S", s)
+    start_time2 = time.strftime("%H_%M_%S", s) #Underscores used for csv file name
+    field = ['coin', 'margin', 'class', 'buy_price', 'sell_price', 'buy_exchange', 'sell_exchange', 'time_found', 'discrepancy_no']
+
+    create_csv()
+
     while start == 0:
         t = time.localtime()
         current_time = time.strftime("%H:%M:%S", t)
@@ -68,7 +53,7 @@ def main():
         btc_sell = [fn.getprice_coinspot('btc', 'bid'), fn.getprice_swiftx('BTC', 'sell'), fn.getprice_coinjar('BTC', 'bid')]
         btc_sell.sort(reverse = True, key=sort)
         
-        #Check variable calls check_margin from functions and saves True or False depending on whether margin is larger than 0.1
+        #Check variable calls check_margin from functions and saves True or False depending on whether margin is larger than 0.5
         check_btc = fn.check_margin(btc_buy[0]['price'], btc_sell[0]['price'])[0]
         
         #Margin variable calls check_margin from functions and saves the profit margin
@@ -276,7 +261,4 @@ def main():
             print('Minor Discrepancies Found:', minor_discrepancy,'\n')
             runs = 0
             continue
-
-if __name__ == '__main__':
-    main()
 
