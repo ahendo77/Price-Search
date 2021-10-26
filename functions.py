@@ -6,6 +6,29 @@ import keyboard
 #coins = bitcoin, ripple, litecoin, stellar, cardano
 #codes = btc, xrp, ltc, xlm(str for coinspot), ada
 
+<<<<<<< Updated upstream
+=======
+#Starting the Program
+
+def user_input():
+    s = time.localtime()
+    start_time = time.strftime("%H:%M:%S", s)
+    question = input('\nAPI Status OK, begin searching? Y/N\n')
+    
+    while True:
+        if question == 'y' or question == 'Y':
+            print('\nNow Searching...','\n')
+            print('Search Initiated at:', start_time,'\n')
+            break
+        elif question == 'n' or question == 'N':
+            exit()
+        else:
+            print('Please enter y or n')
+            question = input()
+            continue
+
+
+>>>>>>> Stashed changes
 #Check API Status of Exchanges
 
 def checkstatus_coinspot():
