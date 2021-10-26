@@ -1,7 +1,9 @@
 import time
 import json
 import requests
-import keyboard
+
+#Price Dicrepancy Search 
+#Version Alpha 1.1.0 by Alex Henderson
 
 #coins = bitcoin, ripple, litecoin, stellar, cardano
 #codes = btc, xrp, ltc, xlm(str for coinspot), ada
@@ -93,6 +95,9 @@ def getprice_coinjar(coin = 'BTC' or 'XRP' or 'LTC' or 'XLM', type = 'ask' or 'b
     exchange = 'CoinJar'
     dict = {'price': price, 'exchange': exchange}
     return dict
+
+
+# Checking Profit Margin 
 
 def check_margin(buy, sell):
     difference = (float(sell)) - (float(buy))

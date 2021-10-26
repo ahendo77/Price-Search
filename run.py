@@ -2,7 +2,6 @@ from main import *
 import main as m
 import functions as fn
 import signal
-import time 
 
 #Price Dicrepancy Search 
 #Version Alpha 1.1.0 by Alex Henderson
