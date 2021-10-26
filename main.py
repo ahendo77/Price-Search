@@ -25,11 +25,13 @@ def create_csv(): #Creates csv output file to place record discrepancies and wri
 
 def main():
     global moderate_discrepancy
+    global minor_discrepancy
     minor_discrepancy = 0
     moderate_discrepancy = 0
     runs = 0
     start = 0
     s = time.localtime()
+    global start_time
     start_time = time.strftime("%H:%M:%S", s)
     start_time2 = time.strftime("%H_%M_%S", s) #Underscores used for csv file name
     field = ['coin', 'margin', 'class', 'buy_price', 'sell_price', 'buy_exchange', 'sell_exchange', 'time_found', 'discrepancy_no']
