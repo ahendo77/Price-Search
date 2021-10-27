@@ -113,7 +113,7 @@ def main():
         #Searching for Cardano
         
         #See above comments for description 
-        ada_buy = [fn.getprice_coinspot('ada', 'ask'), fn.getprice_swiftx('ADA', 'buy')]
+        ada_buy = [fn.getprice_coinspot('ada', 'ask'), fn.getprice_swiftx('ADA', 'buy')] #Cardano is not sold on CoinJar
         ada_buy.sort(reverse= False, key=sort)
         
         ada_sell = [fn.getprice_coinspot('ada', 'bid'), fn.getprice_swiftx('ADA', 'sell')]

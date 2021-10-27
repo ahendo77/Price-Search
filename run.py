@@ -15,7 +15,7 @@ def exit_handler(signum, frame):
     while True:
         if question == 'y' or question == 'Y':
             break
-        elif question == 'n' or question == 'n':
+        elif question == 'n' or question == 'N':
             print('Now Searching...\n')
             return None
         else:
