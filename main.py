@@ -3,6 +3,7 @@ import json
 import time
 import csv
 import threading
+import os 
 import functions as fn
 
 #Price-Search Copyright (C) 2021  Alex Henderson
