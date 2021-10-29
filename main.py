@@ -181,7 +181,7 @@ def main():
             'buy_exchange': exchange_ltc['Buy'],
             'sell_exchange': exchange_ltc['Sell'],
             'time_found': current_time,
-            'discrepacny_no': moderate_discrepancy
+            'discrepancy_no': moderate_discrepancy
             }]
 
         rows_xlm = [{
@@ -193,7 +193,7 @@ def main():
             'buy_exchange': exchange_xlm['Buy'],
             'sell_exchange': exchange_xlm['Sell'],
             'time_found': current_time,
-            'discrepacny_no': moderate_discrepancy
+            'discrepancy_no': moderate_discrepancy
             }]
        
         rows_ada = [{
