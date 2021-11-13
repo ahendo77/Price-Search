@@ -76,25 +76,25 @@ def getprice_coinspot(coin = 'btc' or 'xrp' or 'ltc' or 'str' or 'ada', type = '
     api = requests.get('https://www.coinspot.com.au/pubapi/v2/latest').text
     response = json.loads(api)
     price = response['prices'][coin][type]
-    exchange = 'Coinspot'
-    dict = {'price': price, 'exchange': exchange}
-    return dict
+    #exchange = 'Coinspot'
+    #dict = {'price': price, 'exchange': exchange}
+    return price
 
 def getprice_swiftx(coin = 'BTC' or 'XRP' or 'LTC' or 'XLM' or 'ADA', type = 'buy' or 'sell'):
     api = requests.get('https://api.swyftx.com.au/markets/info/basic/{}/'.format(coin)).text
     response = json.loads(api)
     price = response[0][type]
-    exchange = 'Swiftx'
-    dict = {'price': price, 'exchange': exchange}
-    return dict
+    #exchange = 'Swiftx'
+    #dict = {'price': price, 'exchange': exchange}
+    return price
 
 def getprice_coinjar(coin = 'BTC' or 'XRP' or 'LTC' or 'XLM', type = 'ask' or 'bid'):
     api = requests.get('https://data.exchange.coinjar.com/products/{}AUD/ticker'.format(coin)).text
     response = json.loads(api)
     price = response[type]
-    exchange = 'CoinJar'
-    dict = {'price': price, 'exchange': exchange}
-    return dict
+    #exchange = 'CoinJar'
+    #dict = {'price': price, 'exchange': exchange}
+    return price
 
 
 # Checking Profit Margin 
