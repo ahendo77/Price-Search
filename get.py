@@ -1,4 +1,5 @@
 from os import error
+from sqlite3.dbapi2 import DatabaseError
 import requests
 import json 
 import sqlite3
@@ -180,16 +181,59 @@ and write results to database simultaneously.
 
 '''
 # This will be useful later: data_id = time.strftime("%Y-%m-%d %H:%M:%S")
-    
 
+# System for tracking request cycles is ticker that counts up with each thread and writes the new number to the database column on completion    
 
 def main_get():
-
+    
+    #This is a placeholder will need to change once complete structure is worked out
     def btc_thread():
         list = getdata_btc()
-        data_id = time.strftime("%Y-%m-%d %H:%M:%S")
-        cursor.execute("INSERT INTO btc VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
-        conn.commit()
+        #data_id = time.strftime("%Y-%m-%d %H:%M:%S")
+        #cursor.execute("INSERT INTO btc VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (data_id,1, list[0], list[1], list[2], list[3], list[4], list[5]))
+        #conn.commit()
+        return list
+
+    def xrp_thread():
+        list = [True, getdata_xrp()]
+        #data_id = time.strftime("%Y-%m-%d %H:%M:%S")
+        #cursor.execute("INSERT INTO xrp VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (data_id,1, list[0], list[1], list[2], list[3], list[4], list[5]))
+        #conn.commit()
+        return list
+    
+    def ltc_thread():
+        list = [True, getdata_ltc()]
+        #data_id = time.strftime("%Y-%m-%d %H:%M:%S")
+        #cursor.execute("INSERT INTO ltc VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (data_id,1, list[0], list[1], list[2], list[3], list[4], list[5]))
+        #conn.commit()
+        return list
+    
+    def xlm_thread():
+        list = [True, getdata_xlm()]
+        #data_id = time.strftime("%Y-%m-%d %H:%M:%S")
+        #cursor.execute("INSERT INTO xlm VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (data_id,1, list[0], list[1], list[2], list[3], list[4], list[5]))
+        #conn.commit()
+        return list
+    
+    def ada_thread():
+        list = [True, getdata_ada()]
+        #data_id = time.strftime("%Y-%m-%d %H:%M:%S")
+        #cursor.execute("INSERT INTO ada VALUES (?, ?, ?, ?, ?, ?)", (data_id,1, list[0], list[1], list[2], list[3]))
+        #conn.commit()
+        return list 
+    
+    #t1 = threading.Thread(target=btc_thread)
+    #t2 = threading.Thread(target=xrp_thread)
+    #t3 = threading.Thread(target=ltc_thread)
+    #t4 = threading.Thread(target=xlm_thread)
+    #t5 = threading.Thread(target=ada_thread)
+
+    def main_thread():
+        pass
+
+
+    #Here for testing
     btc_thread()
 
+#Here for testing 
 main_get()    
