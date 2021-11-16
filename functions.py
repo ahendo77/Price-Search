@@ -96,6 +96,90 @@ def getprice_coinjar(coin = 'BTC' or 'XRP' or 'LTC' or 'XLM', type = 'ask' or 'b
     #dict = {'price': price, 'exchange': exchange}
     return price
 
+# Getting Pricing Data for each asset in lists
+
+# BTC Data 
+def getdata_btc():
+    #Coinspot Data
+    buy_coinspot = getprice_coinspot('btc', 'ask') #Calls function from functions.py
+    sell_coinspot = getprice_coinspot('btc', 'bid')
+
+    #Swiftx Data
+    buy_swiftx = getprice_swiftx('BTC', 'buy')
+    sell_swiftx = getprice_swiftx('BTC', 'sell')
+
+    #Coinjar Data
+    buy_coinjar = getprice_coinjar('BTC', 'ask')
+    sell_coinjar = getprice_coinjar('BTC', 'bid')
+
+    list = [buy_coinspot, sell_coinspot, buy_swiftx, sell_swiftx, buy_coinjar, sell_coinjar]
+    return list
+
+# XRP Data
+def getdata_xrp():
+    #Coinspot Data
+    buy_coinspot = getprice_coinspot('xrp', 'ask')
+    sell_coinspot = getprice_coinspot('xrp', 'bid')
+
+    #Swiftx Data
+    buy_swiftx = getprice_swiftx('XRP', 'buy')
+    sell_swiftx = getprice_swiftx('XRP', 'sell')
+
+    #Coinjar Data
+    buy_coinjar = getprice_coinjar('xrp', 'ask')
+    sell_coinjar = getprice_coinjar('xrp', 'bid')
+
+    list = [buy_coinspot, sell_coinspot, buy_swiftx, sell_swiftx, buy_coinjar, sell_coinjar]
+    return list
+
+# LTC Data
+def getdata_ltc():
+    #Coinspot Data
+    buy_coinspot = getprice_coinspot('ltc', 'ask')
+    sell_coinspot = getprice_coinspot('ltc', 'bid')
+
+    #Swiftx Data
+    buy_swiftx = getprice_swiftx('LTC', 'buy')
+    sell_swiftx = getprice_swiftx('LTC', 'sell')
+
+    #Coinjar Data
+    buy_coinjar = getprice_coinjar('ltc', 'ask')
+    sell_coinjar = getprice_coinjar('ltc', 'bid')
+
+    list = [buy_coinspot, sell_coinspot, buy_swiftx, sell_swiftx, buy_coinjar, sell_coinjar]
+    return list
+
+#XLM Data
+def getdata_xlm():
+    #Coinspot Data
+    buy_coinspot = getprice_coinspot('str', 'ask')
+    sell_coinspot = getprice_coinspot('str', 'bid')
+
+    #Swiftx Data
+    buy_swiftx = getprice_swiftx('XLM', 'buy')
+    sell_swiftx = getprice_swiftx('XLM', 'sell')
+
+    #Coinjar Data
+    buy_coinjar = getprice_coinjar('xlm', 'ask')
+    sell_coinjar = getprice_coinjar('xlm', 'bid')
+
+    list = [buy_coinspot, sell_coinspot, buy_swiftx, sell_swiftx, buy_coinjar, sell_coinjar]
+    return list
+
+#ADA Data (Coinjar doesn't list ADA)
+
+def getdata_ada():
+    #Coinspot Data
+    buy_coinspot = getprice_coinspot('ada', 'ask')
+    sell_coinspot = getprice_coinspot('ada', 'bid')
+
+    #Swiftx Data
+    buy_swiftx = getprice_swiftx('ADA', 'buy')
+    sell_swiftx = getprice_swiftx('ADA', 'sell')
+
+    list = [buy_coinspot, sell_coinspot, buy_swiftx, sell_swiftx]
+    return list
+
 
 # Checking Profit Margin 
 
