@@ -2,8 +2,16 @@ import time
 import json
 import requests
 
-#Price-Search Copyright (C) 2021  Alex Henderson
-#Version Alpha 1.2.0
+'''
+
+Price-Search Copyright (C) 2021 Alex Henderson
+Version Alpha 2.0
+
+FUNCTIONS file serves to store functions used by other
+parts of the program for ogransiation and ease of use.
+
+'''
+
 
 #coins = bitcoin, ripple, litecoin, stellar, cardano
 #codes = btc, xrp, ltc, xlm(str for coinspot), ada

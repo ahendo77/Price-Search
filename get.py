@@ -1,15 +1,15 @@
 from os import error
-from sqlite3.dbapi2 import DatabaseError
-import requests
-import json 
+from sqlite3.dbapi2 import DatabaseError 
 import sqlite3
 import time
-import threading
 import functions as fn
 
 '''
-GET files serves sole purpose of getting the data from the API and storing it in the database
-in a raw format to be actively used by the program. 
+Price-Search Copyright (C) 2021 Alex Henderson
+Version Alpha 2.0
+
+GET file holds database connection and functions to request pricing
+data and write to the database.
 
 '''
 
@@ -115,5 +115,3 @@ def ada_thread():
     cursor.execute("INSERT INTO ada VALUES (?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3]))
     conn.commit()
 
-
-btc_thread()
