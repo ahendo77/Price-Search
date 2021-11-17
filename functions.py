@@ -18,6 +18,9 @@ parts of the program for ogransiation and ease of use.
 
 #Starting the Program
 
+#global sessionstart_btc, requestnumber_xrp, requestnumber_ltc, requestnumber_xlm, requestnumber_ada
+#requestnumber_btc = 0
+
 def user_input():
     s = time.localtime()
     start_time = time.strftime("%H:%M:%S", s)

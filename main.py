@@ -11,8 +11,11 @@ Version Alpha 2.0
 MAIN file organises threading to use functions in GET and CHECK
 to simultaneously perfom all program functions. Including: 
 writing live pricing data to raw.db and actively checking live
-raw.db to find discreapcnies and write to new database. 
+raw.db to find discrepancies and write to new database. 
 
 '''
 
-# Live Price Database
+# Getting live pricing data
+
+def get_live_data():
+    pass

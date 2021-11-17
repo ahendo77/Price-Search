@@ -16,7 +16,7 @@ data and write to the database.
 # Asset order: btc, xrp, ltc, xlm(str for coinspot), ada
 # Create and connect to database and create tables if they dont already exist
 
-def start_tempdb():
+def start_rawdb():
     try:
         global cursor
         global conn
@@ -25,7 +25,8 @@ def start_tempdb():
         print('Database Connection Successful')
     except:
         print('Database Error:', error)
-        exit
+        exit()
+  
     
     # Create Tables for the database
     cursor.execute('''CREATE TABLE IF NOT EXISTS btc(
@@ -70,14 +71,16 @@ def start_tempdb():
 
     cursor.execute('''CREATE TABLE IF NOT EXISTS ada(
         data_id TEXT PRIMAY KEY,
+        request_number INTEGER,
         market_coinspot_buy REAL,
         market_coinspot_sell REAL,
         market_swiftx_buy REAL,
         market_swiftx_sell REAL);
     ''')
 
+
 #Here for testing
-#start_tempdb()
+#start_rawdb()
 
 '''
 
@@ -115,3 +118,6 @@ def ada_thread():
     cursor.execute("INSERT INTO ada VALUES (?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3]))
     conn.commit()
 
+# Here for testing
+#while True:
+#btc_thread()
