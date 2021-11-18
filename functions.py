@@ -5,7 +5,7 @@ import requests
 '''
 
 Price-Search Copyright (C) 2021 Alex Henderson
-Version Alpha 2.0
+Version Alpha 2.0.0
 
 FUNCTIONS file serves to store functions used by other
 parts of the program for ogransiation and ease of use.
@@ -197,7 +197,7 @@ def getdata_ada():
 def check_margin(buy, sell):
     difference = (float(sell)) - (float(buy))
     margin = difference*100/(float(buy))
-    if margin >= 0.5:
+    if margin >= 0.2:
         list = [True, margin]
         return list
     else:

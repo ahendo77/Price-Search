@@ -6,7 +6,7 @@ import sqlite3
 
 '''
 Price-Search Copyright (C) 2021 Alex Henderson
-Version Alpha 2.0
+Version Alpha 2.0.0
 
 MAIN file organises threading to use functions in GET and CHECK
 to simultaneously perfom all program functions. Including: 
