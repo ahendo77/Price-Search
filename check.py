@@ -124,7 +124,7 @@ Rows returned from database are as follows:
 
 '''
 
-# Checks Bitcoin Table for discrepancies
+# Checks BTC Table for discrepancies
 
 def check_btc():
     cursor_live.execute('SELECT * FROM btc ORDER BY ROWID DESC LIMIT 1') # FUCK YEAH THIS WORKS FINALLY 
@@ -142,7 +142,7 @@ def check_btc():
 
     #Checking for discrepancies
     margin = fn.check_margin(prices_buy[0]['price'], prices_sell[0]['price'])
-    margin_size = fn.check_margin_size(margin[1]) # Need to fix margin size function for more catagories
+    margin_size = fn.check_margin_size(margin[1]) # Need to fix margin size function for more catagories *** MARGIN HAS TEMPORARY LOW FOR TESTING ***
 
     #If margin returns true, there is a discrepancy of more than 0.2
     if margin[0] == True:
@@ -154,10 +154,122 @@ def check_btc():
         return False
     
 
+# Checks XRP Table for discrepancies
 
-
-
-        
-
-
+def check_xrp():
+    cursor_live.execute('SELECT * FROM xrp ORDER BY ROWID DESC LIMIT 1') # FUCK YEAH THIS WORKS FINALLY 
+    row = list(cursor_live.fetchall())
+    row1 = row[0] # Row returns list within a list
+    dataid = row1[0]
     
+    #Placing prices into dictionaries to determine orgin market
+    prices_buy = [{'price': row1[1], 'market': 'CoinSpot'}, {'price': row1[3], 'market': 'Swiftx'}, {'price': row1[5], 'market': 'CoinJar'}]
+    prices_sell = [{'price': row1[2], 'market': 'CoinSpot'}, {'price': row1[4], 'market': 'Swiftx'}, {'price': row1[6], 'market': 'CoinJar'}]
+
+    #Sorting dictionaries based on price 
+    prices_buy.sort(reverse=False, key=sort)
+    prices_sell.sort(reverse=True, key= sort)
+
+    #Checking for discrepancies
+    margin = fn.check_margin(prices_buy[0]['price'], prices_sell[0]['price'])
+    margin_size = fn.check_margin_size(margin[1]) # Need to fix margin size function for more catagories
+
+    #If margin returns true, there is a discrepancy of more than 0.2 *** MARGIN HAS TEMPORARY LOW FOR TESTING ***
+    if margin[0] == True:
+        print('Discrepancy found!')
+        print('placeholder')
+        cursor.execute('INSERT INTO xrp VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
+        conn.commit()
+    elif margin[0] == False:
+        return False
+
+# Checks LTC Table for discrepancies
+
+def check_ltc():
+    cursor_live.execute('SELECT * FROM ltc ORDER BY ROWID DESC LIMIT 1') # FUCK YEAH THIS WORKS FINALLY 
+    row = list(cursor_live.fetchall())
+    row1 = row[0] # Row returns list within a list
+    dataid = row1[0]
+    
+    #Placing prices into dictionaries to determine orgin market
+    prices_buy = [{'price': row1[1], 'market': 'CoinSpot'}, {'price': row1[3], 'market': 'Swiftx'}, {'price': row1[5], 'market': 'CoinJar'}]
+    prices_sell = [{'price': row1[2], 'market': 'CoinSpot'}, {'price': row1[4], 'market': 'Swiftx'}, {'price': row1[6], 'market': 'CoinJar'}]
+
+    #Sorting dictionaries based on price 
+    prices_buy.sort(reverse=False, key=sort)
+    prices_sell.sort(reverse=True, key= sort)
+
+    #Checking for discrepancies
+    margin = fn.check_margin(prices_buy[0]['price'], prices_sell[0]['price'])
+    margin_size = fn.check_margin_size(margin[1]) # Need to fix margin size function for more catagories
+
+    #If margin returns true, there is a discrepancy of more than 0.2 *** MARGIN HAS TEMPORARY LOW FOR TESTING ***
+    if margin[0] == True:
+        print('Discrepancy found!')
+        print('placeholder')
+        cursor.execute('INSERT INTO ltc VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
+        conn.commit()
+    elif margin[0] == False:
+        return False
+
+
+# Checks XLM (STR Coinspot) Table for discrepancies
+
+def xlm_check():
+    cursor_live.execute('SELECT * FROM xlm ORDER BY ROWID DESC LIMIT 1') # FUCK YEAH THIS WORKS FINALLY 
+    row = list(cursor_live.fetchall())
+    row1 = row[0] # Row returns list within a list
+    dataid = row1[0]
+    
+    #Placing prices into dictionaries to determine orgin market
+    prices_buy = [{'price': row1[1], 'market': 'CoinSpot'}, {'price': row1[3], 'market': 'Swiftx'}, {'price': row1[5], 'market': 'CoinJar'}]
+    prices_sell = [{'price': row1[2], 'market': 'CoinSpot'}, {'price': row1[4], 'market': 'Swiftx'}, {'price': row1[6], 'market': 'CoinJar'}]
+
+    #Sorting dictionaries based on price 
+    prices_buy.sort(reverse=False, key=sort)
+    prices_sell.sort(reverse=True, key= sort)
+
+    #Checking for discrepancies
+    margin = fn.check_margin(prices_buy[0]['price'], prices_sell[0]['price'])
+    margin_size = fn.check_margin_size(margin[1]) # Need to fix margin size function for more catagories
+
+    #If margin returns true, there is a discrepancy of more than 0.2 *** MARGIN HAS TEMPORARY LOW FOR TESTING ***
+    if margin[0] == True:
+        print('Discrepancy found!')
+        print('placeholder')
+        cursor.execute('INSERT INTO xlm VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
+        conn.commit()
+    elif margin[0] == False:
+        return False
+
+
+# Checks ADA (CoinJar doesn't sell) Table for discrepancies
+
+def check_ada():
+    cursor_live.execute('SELECT * FROM ada ORDER BY ROWID DESC LIMIT 1') # FUCK YEAH THIS WORKS FINALLY 
+    row = list(cursor_live.fetchall())
+    row1 = row[0] # Row returns list within a list
+    dataid = row1[0]
+    
+    #Placing prices into dictionaries to determine orgin market
+    prices_buy = [{'price': row1[1], 'market': 'CoinSpot'}, {'price': row1[3], 'market': 'Swiftx'}]
+    prices_sell = [{'price': row1[2], 'market': 'CoinSpot'}, {'price': row1[4], 'market': 'Swiftx'}]
+
+    #Sorting dictionaries based on price 
+    prices_buy.sort(reverse=False, key=sort)
+    prices_sell.sort(reverse=True, key= sort)
+
+    #Checking for discrepancies
+    margin = fn.check_margin(prices_buy[0]['price'], prices_sell[0]['price'])
+    margin_size = fn.check_margin_size(margin[1]) # Need to fix margin size function for more catagories
+
+    #If margin returns true, there is a discrepancy of more than 0.2 *** MARGIN HAS TEMPORARY LOW FOR TESTING ***
+    if margin[0] == True:
+        print('Discrepancy found!')
+        print('placeholder')
+        cursor.execute('INSERT INTO ada VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
+        conn.commit()
+    elif margin[0] == False:
+        return False
+
+

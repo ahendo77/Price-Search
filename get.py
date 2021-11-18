@@ -71,7 +71,6 @@ def start_rawdb():
 
     cursor.execute('''CREATE TABLE IF NOT EXISTS ada(
         data_id TEXT PRIMAY KEY,
-        request_number INTEGER,
         market_coinspot_buy REAL,
         market_coinspot_sell REAL,
         market_swiftx_buy REAL,
@@ -80,7 +79,7 @@ def start_rawdb():
 
 
 #Here for testing
-#start_rawdb()
+start_rawdb()
 
 '''
 

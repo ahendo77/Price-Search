@@ -137,8 +137,8 @@ def getdata_xrp():
     sell_swiftx = getprice_swiftx('XRP', 'sell')
 
     #Coinjar Data
-    buy_coinjar = getprice_coinjar('xrp', 'ask')
-    sell_coinjar = getprice_coinjar('xrp', 'bid')
+    buy_coinjar = getprice_coinjar('XRP', 'ask')
+    sell_coinjar = getprice_coinjar('XRP', 'bid')
 
     list = [buy_coinspot, sell_coinspot, buy_swiftx, sell_swiftx, buy_coinjar, sell_coinjar]
     return list
@@ -154,8 +154,8 @@ def getdata_ltc():
     sell_swiftx = getprice_swiftx('LTC', 'sell')
 
     #Coinjar Data
-    buy_coinjar = getprice_coinjar('ltc', 'ask')
-    sell_coinjar = getprice_coinjar('ltc', 'bid')
+    buy_coinjar = getprice_coinjar('LTC', 'ask')
+    sell_coinjar = getprice_coinjar('LTC', 'bid')
 
     list = [buy_coinspot, sell_coinspot, buy_swiftx, sell_swiftx, buy_coinjar, sell_coinjar]
     return list
@@ -171,8 +171,8 @@ def getdata_xlm():
     sell_swiftx = getprice_swiftx('XLM', 'sell')
 
     #Coinjar Data
-    buy_coinjar = getprice_coinjar('xlm', 'ask')
-    sell_coinjar = getprice_coinjar('xlm', 'bid')
+    buy_coinjar = getprice_coinjar('XLM', 'ask')
+    sell_coinjar = getprice_coinjar('XLM', 'bid')
 
     list = [buy_coinspot, sell_coinspot, buy_swiftx, sell_swiftx, buy_coinjar, sell_coinjar]
     return list
@@ -194,10 +194,11 @@ def getdata_ada():
 
 # Checking Profit Margin 
 
+#TEMPORARY CHANGE FOR TESTING PURPOSES
 def check_margin(buy, sell):
     difference = (float(sell)) - (float(buy))
     margin = difference*100/(float(buy))
-    if margin >= 0.2:
+    if margin >= -0.5: # *** TEMPORARY CHANGE LATER ***
         list = [True, margin]
         return list
     else:
