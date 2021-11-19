@@ -57,6 +57,25 @@ def user_input():
 
 #Check API Status of Exchanges
 
+def checkstatus_marketapi():
+    while True:
+        response1 = checkstatus_coinspot()
+        response2 = checkstatus_swiftx()
+        response3 = checkstatus_coinjar()
+          
+        print('\nCoinSpot API Status:', response1)
+        time.sleep(0.3) # Delay just cause it makes it seem cooler
+        print('SwiftX API Status:', response2)
+        time.sleep(0.3)
+        print('CoinJar API Status:', response3)
+
+        if response1 != 'GOOD' or response2 != 'GOOD' or response3 != 'GOOD':
+            print('\nAPI status check failed, exiting...')
+            exit()
+        else:
+            break
+
+
 def checkstatus_coinspot():
     status_get2 = requests.get('https://www.coinspot.com.au/pubapi/v2/latest').text
     status2 = requests.get('https://www.coinspot.com.au/pubapi/v2/latest')
@@ -64,18 +83,20 @@ def checkstatus_coinspot():
     coinspot_status2 = coinspot_status1['status']
     
     if coinspot_status2 == 'ok' and status2.status_code == 200:
-        print('Coinspot API Status: GOOD')
+        #print('Coinspot API Status: GOOD')
+        return 'GOOD'
     else:
-        print('Coinspot API Status: ERROR')
-        exit()
+        #print('Coinspot API Status: ERROR')
+        return 'ERROR'
 
 def checkstatus_coinjar():
     status_get3 = requests.get('https://data.exchange.coinjar.com/products/BTCAUD/ticker')
     if status_get3.status_code == 200:
-        print('CoinJar API Status: GOOD')
+        #print('CoinJar API Status: GOOD')
+        return 'GOOD'
     else:
-        print('CoinJar API Status: ERROR')
-        exit()
+        #print('CoinJar API Status: ERROR')
+        return 'ERROR'
 
 def checkstatus_swiftx():
     status_get = requests.get('https://api.swyftx.com.au/info/').text
@@ -91,10 +112,11 @@ def checkstatus_swiftx():
         swiftx_api = 'bad'
     
     if swiftx_api == 'good':
-        print('Swiftx API Status: GOOD')
+        #print('Swiftx API Status: GOOD')
+        return 'GOOD'
     else:
-        print('Swiftx API Status: ERROR')
-        exit()
+        #print('Swiftx API Status: ERROR')
+        return 'ERROR'
 
 
 #Getting Prices from Exchanges

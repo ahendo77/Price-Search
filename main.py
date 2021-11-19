@@ -22,11 +22,11 @@ raw.db to find discrepancies and write to new database.
 
 # Program name and version to be displayed at all times
 def message():
+    os.system('cls')
     print('Price-Search (C) 2021 Alex Henderson','\nV2.0.0 Alpha')
 
-
-def start():
-    os.system('cls')
+# Serve as general program start function (maybe?)
+def start(): 
     message()
 
     # Later versions will inlcude options to view database data and perfom basic analysis
@@ -41,15 +41,25 @@ def start():
     
 
 def live_search():
-    os.system('cls')
     message()
 
+    '''
+    
+    Control Flow here, confirms user choices, checks API Database Connection
+
+    '''
+
+    # Confirms Choice with query function
     print('\nLive Search Selected', '\nBegin Now? y/n')
     if fn.user_query(input()) == True:
         pass
     else:
         start()
     
+    # Check Market API Status
+    message()
+    print('\nChecking Market API Status...')
+    fn.checkstatus_marketapi()
     
     
 start()
