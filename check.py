@@ -87,7 +87,7 @@ def start_discrepancydb():
     )
 
 #Here for testing 
-start_discrepancydb()
+#start_discrepancydb()
 
 # Check for and open connection to Live Price Database
 
@@ -105,7 +105,7 @@ def connect_liveprices():
         exit()
 
 #Here for testing
-connect_liveprices()
+#connect_liveprices()
 
 '''
 Section here fetches the first decending row

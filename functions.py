@@ -21,6 +21,22 @@ parts of the program for ogransiation and ease of use.
 #global sessionstart_btc, requestnumber_xrp, requestnumber_ltc, requestnumber_xlm, requestnumber_ada
 #requestnumber_btc = 0
 
+# Y/N question function
+
+def user_query(response):
+    while True:
+        for i in response:
+            if i == 'y' or i == 'Y':
+                return True
+            elif i == 'n' or i == 'N':
+                return False
+            else:
+                print('Please enter y/n')
+                response = input()
+                continue
+
+
+
 def user_input():
     s = time.localtime()
     start_time = time.strftime("%H:%M:%S", s)

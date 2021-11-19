@@ -79,7 +79,7 @@ def start_rawdb():
 
 
 #Here for testing
-start_rawdb()
+#start_rawdb()
 
 '''
 
