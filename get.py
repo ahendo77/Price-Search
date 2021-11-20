@@ -22,7 +22,8 @@ def start_rawdb():
         global conn
         conn = sqlite3.connect('raw_data.db')
         cursor = conn.cursor()
-        print('Database Connection Successful')
+        print('Live Price Connection 1 Successful')
+        time.sleep(0.3)
     except:
         print('Database Error:', error)
         exit()
@@ -88,34 +89,55 @@ Threads make request for market data for each asset and write it to the database
 '''
 
 def btc_thread():
-    list = fn.getdata_btc()
-    data_id = time.strftime("%Y-%m-%d %H:%M:%S")
-    cursor.execute("INSERT INTO btc VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
-    conn.commit()
+    # Threading module throws an error when sharing sql connections so will need a seperate one in each thread
+    conn_btc = sqlite3.connect('raw_data.db')
+    cursor_btc = conn_btc.cursor()
+
+    while True:
+        list = fn.getdata_btc()
+        data_id = time.strftime("%Y-%m-%d %H:%M:%S")
+        cursor_btc.execute("INSERT INTO btc VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
+        conn_btc.commit()
 
 def xrp_thread():
-    list = fn.getdata_xrp()
-    data_id = time.strftime("%Y-%m-%d %H:%M:%S")
-    cursor.execute("INSERT INTO xrp VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
-    conn.commit()
+    conn_xrp = sqlite3.connect('raw_data.db')
+    cursor_xrp = conn_xrp.cursor()
+
+    while True:
+        list = fn.getdata_xrp()
+        data_id = time.strftime("%Y-%m-%d %H:%M:%S")
+        cursor_xrp.execute("INSERT INTO xrp VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
+        conn_xrp.commit()
 
 def ltc_thread():
-    list = fn.getdata_ltc()
-    data_id = time.strftime("%Y-%m-%d %H:%M:%S")
-    cursor.execute("INSERT INTO ltc VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
-    conn.commit()
+    conn_ltc = sqlite3.connect('raw_data.db')
+    cursor_ltc = conn_ltc.cursor()
+
+    while True:
+        list = fn.getdata_ltc()
+        data_id = time.strftime("%Y-%m-%d %H:%M:%S")
+        cursor_ltc.execute("INSERT INTO ltc VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
+        conn_ltc.commit()
 
 def xlm_thread():
-    list = fn.getdata_xlm()
-    data_id = time.strftime("%Y-%m-%d %H:%M:%S")
-    cursor.execute("INSERT INTO xlm VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
-    conn.commit()
+    conn_xlm = sqlite3.connect('raw_data.db')
+    cursor_xlm = conn_xlm.cursor()
+
+    while True:
+        list = fn.getdata_xlm()
+        data_id = time.strftime("%Y-%m-%d %H:%M:%S")
+        cursor_xlm.execute("INSERT INTO xlm VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
+        conn_xlm.commit()
 
 def ada_thread():
-    list = fn.getdata_ada()
-    data_id = time.strftime("%Y-%m-%d %H:%M:%S")
-    cursor.execute("INSERT INTO ada VALUES (?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3]))
-    conn.commit()
+    conn_ada = sqlite3.connect('raw_data.db')
+    cursor_ada = conn_ada.cursor()
+
+    while True:
+        list = fn.getdata_ada()
+        data_id = time.strftime("%Y-%m-%d %H:%M:%S")
+        cursor_ada.execute("INSERT INTO ada VALUES (?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3]))
+        conn_ada.commit()
 
 # Here for testing
 #while True:

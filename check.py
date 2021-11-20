@@ -29,7 +29,8 @@ def start_discrepancydb():
         global conn
         conn = sqlite3.connect('discrepancy_data.db')
         cursor = conn.cursor()
-        print('Database Connection Successful')
+        print('Price Discrepancy Connection Successful')
+        time.sleep(0.5)
     except:
         print('Error with database:', error)
         exit()
@@ -99,7 +100,8 @@ def connect_liveprices():
         session_start = time.strftime('%H:%M:%S')
         conn_live = sqlite3.connect('raw_data.db')
         cursor_live = conn_live.cursor()
-        print('Live Price Database Connection Successful')
+        print('Live Price Connection 2 Successful')
+        time.sleep(0.5)
     except:
         print('Error with database:', error)
         exit()
