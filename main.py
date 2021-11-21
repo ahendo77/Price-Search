@@ -95,48 +95,97 @@ def live_search_thread():
 
     #Creating threads to get prices for each coin
     try:
-        btcthread = threading.Thread(target=get.btc_thread)
-        btcthread.start()
+        btcthread_get = threading.Thread(target=get.btc_thread)
+        btcthread_get.start()
         print('\nBTC Live Price Thread Now Working')
     except:
         print('\nBTC Live Price Thread Error', '\nExiting...')
         exit()
     
     try:
-        xrpthread = threading.Thread(target=get.xrp_thread)
-        xrpthread.start()
+        xrpthread_get = threading.Thread(target=get.xrp_thread)
+        xrpthread_get.start()
         print('XRP Live Price Thread Now Working')
     except:
         print('\nXRP Live Price Thread Error', '\nExiting...')
         exit()
 
     try:
-        ltcthread = threading.Thread(target=get.ltc_thread)
-        ltcthread.start()
+        ltcthread_get = threading.Thread(target=get.ltc_thread)
+        ltcthread_get.start()
         print('LTC Live Price Thread Now Working')
     except:
         print('\nLTC Live Price Thread Error', '\nExiting...')
         exit()
     
     try:
-        xlmthread = threading.Thread(target=get.xlm_thread)
-        xlmthread.start()
+        xlmthread_get = threading.Thread(target=get.xlm_thread)
+        xlmthread_get.start()
         print('XLM Live Price Thread Now Working')
     except:
         print('\nXLM Live Price Thread Error', '\nExiting...')
         exit()
 
     try:
-        adathread = threading.Thread(target=get.ada_thread)
-        adathread.start()
+        adathread_get = threading.Thread(target=get.ada_thread)
+        adathread_get.start()
         print('ADA Live Price Thread Now Working')
     except:
         print('\nADA Live Price Thread Error', '\nExiting...')
         exit()
+    live_check_thread()
 
-def check_thread():
+def live_check_thread():
     message()
     print('\nLive Check Threads Now Starting')
+
+    # Creating Threads to Check with each coin
+
+    try:
+        btcthread_check = threading.Thread(target=check.check_btc)
+        btcthread_check.start()
+        print('BTC Check Thread Now Working')
+    except:
+        print('\nBTC Check Thread Error', '\nExiting...')
+        exit()
     
+    try:
+        xrpthread_check = threading.Thread(target=check.check_xrp)
+        xrpthread_check.start()
+        print('XRP Check Thread Now Working')
+    except:
+        print('\nXRP Check Thread Error', '\nExiting...')
+        exit()
+    
+    try:
+        ltcthread_check = threading.Thread(target=check.check_ltc)
+        ltcthread_check.start()
+        print('LTC Check Thread Now Working')
+    except:
+        print('\nLTC Check Thread Error', '\nExiting...')
+        exit()
+    
+    try:
+        xlmthread_check = threading.Thread(target=check.check_xlm)
+        xlmthread_check.start()
+        print('XLM Check Thread Now Working')
+    except:
+        print('\nXLM Check Thread Error', '\nExiting...')
+        exit()
+    
+    try:
+        adathread_check = threading.Thread(target=check.check_ada)
+        adathread_check.start()
+        print('ADA Check Thread Now Working')
+    except:
+        print('\nADA Check Thread Error', '\nExiting...')
+        exit()
+
+
+
+
+
+
+
 #Here for testing
 start()
