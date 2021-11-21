@@ -135,7 +135,8 @@ def live_search_thread():
         exit()
 
 def check_thread():
-    pass
-
+    message()
+    print('\nLive Check Threads Now Starting')
+    
 #Here for testing
 start()
