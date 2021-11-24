@@ -7,3 +7,4 @@ __pycache__/functions.cpython-39.pyc
 raw_data.db
 discrepancy_data.db
 __pycache__/
+*.pyc
