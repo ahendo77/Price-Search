@@ -96,8 +96,10 @@ def btc_thread():
     while True:
         list = fn.getdata_btc()
         data_id = time.strftime("%Y-%m-%d %H:%M:%S")
-        cursor_btc.execute("INSERT INTO btc VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
+        cursor_btc.execute("INSERT or REPLACE INTO btc VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
         conn_btc.commit()
+        time.sleep(2)
+        
 
 def xrp_thread():
     conn_xrp = sqlite3.connect('raw_data.db')
@@ -106,8 +108,9 @@ def xrp_thread():
     while True:
         list = fn.getdata_xrp()
         data_id = time.strftime("%Y-%m-%d %H:%M:%S")
-        cursor_xrp.execute("INSERT INTO xrp VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
+        cursor_xrp.execute("INSERT or REPLACE INTO xrp VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
         conn_xrp.commit()
+        time.sleep(2)
 
 def ltc_thread():
     conn_ltc = sqlite3.connect('raw_data.db')
@@ -116,8 +119,9 @@ def ltc_thread():
     while True:
         list = fn.getdata_ltc()
         data_id = time.strftime("%Y-%m-%d %H:%M:%S")
-        cursor_ltc.execute("INSERT INTO ltc VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
+        cursor_ltc.execute("INSERT or REPLACE INTO ltc VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
         conn_ltc.commit()
+        time.sleep(2)
 
 def xlm_thread():
     conn_xlm = sqlite3.connect('raw_data.db')
@@ -126,8 +130,9 @@ def xlm_thread():
     while True:
         list = fn.getdata_xlm()
         data_id = time.strftime("%Y-%m-%d %H:%M:%S")
-        cursor_xlm.execute("INSERT INTO xlm VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
+        cursor_xlm.execute("INSERT or REPLACE INTO xlm VALUES (?, ?, ?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3], list[4], list[5]))
         conn_xlm.commit()
+        time.sleep(2)
 
 def ada_thread():
     conn_ada = sqlite3.connect('raw_data.db')
@@ -136,8 +141,9 @@ def ada_thread():
     while True:
         list = fn.getdata_ada()
         data_id = time.strftime("%Y-%m-%d %H:%M:%S")
-        cursor_ada.execute("INSERT INTO ada VALUES (?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3]))
+        cursor_ada.execute("INSERT or REPLACE INTO ada VALUES (?, ?, ?, ?, ?)", (data_id, list[0], list[1], list[2], list[3]))
         conn_ada.commit()
+        time.sleep(2)
 
 # Here for testing
 #while True:

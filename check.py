@@ -158,9 +158,11 @@ def check_btc():
         if margin[0] == True:
             print('Discrepancy found!')
             print('placeholder')
-            cursor_btc.execute('INSERT INTO btc VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
+            cursor_btc.execute('INSERT or REPLACE INTO btc VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_btc.commit()
+            time.sleep(1)
         elif margin[0] == False:
+            time.sleep(3)
             return False
     
 
@@ -195,10 +197,14 @@ def check_xrp():
         if margin[0] == True:
             print('Discrepancy found!')
             print('placeholder')
-            cursor_xrp.execute('INSERT INTO xrp VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
+            cursor_xrp.execute('INSERT or REPLACE INTO xrp VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_xrp.commit()
+            time.sleep(1)
         elif margin[0] == False:
+            time.sleep(3)
             return False
+            
+        
     
 
 # Checks LTC Table for discrepancies
@@ -233,9 +239,11 @@ def check_ltc():
         if margin[0] == True:
             print('Discrepancy found!')
             print('placeholder')
-            cursor_ltc.execute('INSERT INTO ltc VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
+            cursor_ltc.execute('INSERT or REPLACE INTO ltc VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_ltc.commit()
+            time.sleep(1)
         elif margin[0] == False:
+            time.sleep(3)
             return False
 
 # Checks XLM (STR Coinspot) Table for discrepancies
@@ -270,9 +278,11 @@ def check_xlm():
         if margin[0] == True:
             print('Discrepancy found!')
             print('placeholder')
-            cursor_xlm.execute('INSERT INTO xlm VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
+            cursor_xlm.execute('INSERT or REPLACE INTO xlm VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_xlm.commit()
+            time.sleep(1)
         elif margin[0] == False:
+            time.sleep(3)
             return False
 
 # Checks ADA (CoinJar doesn't sell) Table for discrepancies
@@ -283,7 +293,7 @@ def check_ada():
     cursor_ada = conn_ada.cursor()
 
     conn_ada_live = sqlite3.connect('raw_data.db')
-    cursor_ada_live = conn_ada_live.cursor
+    cursor_ada_live = conn_ada_live.cursor()
 
     while True:
         cursor_ada_live.execute('SELECT * FROM ada ORDER BY ROWID DESC LIMIT 1') # FUCK YEAH THIS WORKS FINALLY 
@@ -308,9 +318,10 @@ def check_ada():
         if margin[0] == True:
             print('Discrepancy found!')
             print('placeholder')
-            cursor_ada.execute('INSERT INTO ada VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
+            cursor_ada.execute('INSERT or REPLACE INTO ada VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_ada.commit()
+            time.sleep(1)
         elif margin[0] == False:
+            time.sleep(3)
             return False
-
 

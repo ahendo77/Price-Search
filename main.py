@@ -27,6 +27,7 @@ global os_name
 os_name = platform.system()
 
 def message():
+    # Clear should work on both not sure why os can't execute it
     if os_name == 'Windows':
         os.system('cls')
         print('Price-Search (C) 2021 Alex Henderson','\nV2.0.0 Alpha')
@@ -134,6 +135,7 @@ def live_search_thread():
         print('\nADA Live Price Thread Error', '\nExiting...')
         exit()
     live_check_thread()
+    
 
 def live_check_thread():
     message()
