@@ -70,14 +70,14 @@ def live_search_selected():
     time.sleep(2.5)
 
     #Establish Database Connection
-    message()
+    '''message()
     print('\nEstablishing Database Connection...\n')
     time.sleep(0.5)
     get.start_rawdb()
     check.connect_liveprices()
     check.start_discrepancydb()
     print('\nSuccess!')
-    time.sleep(2.5)
+    time.sleep(2.5)'''
     live_search_thread()
 
 '''
@@ -99,6 +99,7 @@ def live_search_thread():
         btcthread_get = threading.Thread(target=get.btc_thread)
         btcthread_get.start()
         print('\nBTC Live Price Thread Now Working')
+        time.sleep(0.5)
     except:
         print('\nBTC Live Price Thread Error', '\nExiting...')
         exit()
@@ -107,6 +108,7 @@ def live_search_thread():
         xrpthread_get = threading.Thread(target=get.xrp_thread)
         xrpthread_get.start()
         print('XRP Live Price Thread Now Working')
+        time.sleep(0.5)
     except:
         print('\nXRP Live Price Thread Error', '\nExiting...')
         exit()
@@ -115,6 +117,7 @@ def live_search_thread():
         ltcthread_get = threading.Thread(target=get.ltc_thread)
         ltcthread_get.start()
         print('LTC Live Price Thread Now Working')
+        time.sleep(0.5)
     except:
         print('\nLTC Live Price Thread Error', '\nExiting...')
         exit()
@@ -123,6 +126,7 @@ def live_search_thread():
         xlmthread_get = threading.Thread(target=get.xlm_thread)
         xlmthread_get.start()
         print('XLM Live Price Thread Now Working')
+        time.sleep(0.5)
     except:
         print('\nXLM Live Price Thread Error', '\nExiting...')
         exit()
@@ -131,9 +135,12 @@ def live_search_thread():
         adathread_get = threading.Thread(target=get.ada_thread)
         adathread_get.start()
         print('ADA Live Price Thread Now Working')
+        time.sleep(0.5)
     except:
         print('\nADA Live Price Thread Error', '\nExiting...')
         exit()
+    print('\nLive Price Threads Now Working')
+    time.sleep(2.5)
     live_check_thread()
     
 
@@ -146,7 +153,8 @@ def live_check_thread():
     try:
         btcthread_check = threading.Thread(target=check.check_btc)
         btcthread_check.start()
-        print('BTC Check Thread Now Working')
+        print('\nBTC Check Thread Now Working')
+        time.sleep(0.5)
     except:
         print('\nBTC Check Thread Error', '\nExiting...')
         exit()
@@ -155,6 +163,7 @@ def live_check_thread():
         xrpthread_check = threading.Thread(target=check.check_xrp)
         xrpthread_check.start()
         print('XRP Check Thread Now Working')
+        time.sleep(0.5)
     except:
         print('\nXRP Check Thread Error', '\nExiting...')
         exit()
@@ -163,6 +172,7 @@ def live_check_thread():
         ltcthread_check = threading.Thread(target=check.check_ltc)
         ltcthread_check.start()
         print('LTC Check Thread Now Working')
+        time.sleep(0.5)
     except:
         print('\nLTC Check Thread Error', '\nExiting...')
         exit()
@@ -171,6 +181,7 @@ def live_check_thread():
         xlmthread_check = threading.Thread(target=check.check_xlm)
         xlmthread_check.start()
         print('XLM Check Thread Now Working')
+        time.sleep(0.5)
     except:
         print('\nXLM Check Thread Error', '\nExiting...')
         exit()
@@ -179,13 +190,14 @@ def live_check_thread():
         adathread_check = threading.Thread(target=check.check_ada)
         adathread_check.start()
         print('ADA Check Thread Now Working')
+        time.sleep(0.5)
     except:
         print('\nADA Check Thread Error', '\nExiting...')
         exit()
 
-
-
-
+    print('\nAll Threads Now Working')
+    print('Now Searching...\n')
+    
 
 
 

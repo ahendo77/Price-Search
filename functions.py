@@ -1,6 +1,8 @@
 import time
 import json
 import requests
+import os 
+import platform
 
 '''
 
@@ -236,7 +238,7 @@ def getdata_ada():
 def check_margin(buy, sell):
     difference = (float(sell)) - (float(buy))
     margin = difference*100/(float(buy))
-    if margin >= -0.5: # *** TEMPORARY CHANGE LATER ***
+    if margin >= 0.2: # *** TEMPORARY CHANGE LATER ***
         list = [True, margin]
         return list
     else:
@@ -258,3 +260,16 @@ def check_margin_size(margin):
         return 'Well fuck me'
     elif margin >= 10:
         return 'Brb buying a lambo'
+
+
+global os_name
+os_name = platform.system()
+
+def message():
+    # Clear should work on both not sure why os can't execute it
+    if os_name == 'Windows':
+        os.system('cls')
+        print('Price-Search (C) 2021 Alex Henderson','\nV2.0.0 Alpha\n')
+    elif os_name == 'Linux':
+        os.system('clear')
+        print('Price-Search (C) 2021 Alex Henderson','\nV2.0.0 Alpha\n')

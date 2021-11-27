@@ -135,7 +135,8 @@ def check_btc():
 
     conn_btc_live = sqlite3.connect('raw_data.db') # Connection to live price database
     cursor_btc_live = conn_btc_live.cursor()
-
+    time.sleep(4) # Give time for graphics to change before printing starts
+    
     while True:
         cursor_btc_live.execute('SELECT * FROM btc ORDER BY ROWID DESC LIMIT 1') # FUCK YEAH THIS WORKS FINALLY 
         row = list(cursor_btc_live.fetchall())
@@ -156,8 +157,10 @@ def check_btc():
         
         #If margin returns true, there is a discrepancy of more than 0.2
         if margin[0] == True:
+            fn.message()
             print('Discrepancy found!')
-            print('placeholder')
+            print('BTC:',margin_size,'@', dataid,'\n')
+            print('Now Searching...')
             cursor_btc.execute('INSERT or REPLACE INTO btc VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_btc.commit()
             time.sleep(1)
@@ -174,6 +177,7 @@ def check_xrp():
 
     conn_xrp_live = sqlite3.connect('raw_data.db')
     cursor_xrp_live = conn_xrp_live.cursor()
+    time.sleep(4) # See BTC
 
     while True:
         cursor_xrp_live.execute('SELECT * FROM xrp ORDER BY ROWID DESC LIMIT 1') # FUCK YEAH THIS WORKS FINALLY 
@@ -195,8 +199,10 @@ def check_xrp():
         
         #If margin returns true, there is a discrepancy of more than 0.2
         if margin[0] == True:
+            fn.message()
             print('Discrepancy found!')
-            print('placeholder')
+            print('XRP:',margin_size,'@', dataid,'\n')
+            print('Now Searching...')
             cursor_xrp.execute('INSERT or REPLACE INTO xrp VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_xrp.commit()
             time.sleep(1)
@@ -216,6 +222,7 @@ def check_ltc():
 
     conn_ltc_live = sqlite3.connect('raw_data.db')
     cursor_ltc_live = conn_ltc_live.cursor()
+    time.sleep(4) # See BTC
 
     while True:
         cursor_ltc_live.execute('SELECT * FROM ltc ORDER BY ROWID DESC LIMIT 1') # FUCK YEAH THIS WORKS FINALLY 
@@ -237,8 +244,10 @@ def check_ltc():
         
         #If margin returns true, there is a discrepancy of more than 0.2
         if margin[0] == True:
+            fn.message()
             print('Discrepancy found!')
-            print('placeholder')
+            print('LTC:',margin_size,'@', dataid,'\n')
+            print('Now Searching...')
             cursor_ltc.execute('INSERT or REPLACE INTO ltc VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_ltc.commit()
             time.sleep(1)
@@ -255,6 +264,7 @@ def check_xlm():
 
     conn_xlm_live = sqlite3.connect('raw_data.db')
     cursor_xlm_live = conn_xlm_live.cursor()
+    time.sleep(4) # See BTC
 
     while True:
         cursor_xlm_live.execute('SELECT * FROM xlm ORDER BY ROWID DESC LIMIT 1') # FUCK YEAH THIS WORKS FINALLY 
@@ -276,13 +286,15 @@ def check_xlm():
         
         #If margin returns true, there is a discrepancy of more than 0.2
         if margin[0] == True:
+            fn.message()
             print('Discrepancy found!')
-            print('placeholder')
+            print('XLM:',margin_size,'@', dataid,'\n')
+            print('Now Searching...')
             cursor_xlm.execute('INSERT or REPLACE INTO xlm VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_xlm.commit()
             time.sleep(1)
         elif margin[0] == False:
-            time.sleep(3)
+            time.sleep(3) 
             return False
 
 # Checks ADA (CoinJar doesn't sell) Table for discrepancies
@@ -294,6 +306,7 @@ def check_ada():
 
     conn_ada_live = sqlite3.connect('raw_data.db')
     cursor_ada_live = conn_ada_live.cursor()
+    time.sleep(4) # See BTC
 
     while True:
         cursor_ada_live.execute('SELECT * FROM ada ORDER BY ROWID DESC LIMIT 1') # FUCK YEAH THIS WORKS FINALLY 
@@ -316,8 +329,10 @@ def check_ada():
         
         #If margin returns true, there is a discrepancy of more than 0.2 *** MARGIN HAS TEMPORARY LOW FOR TESTING ***
         if margin[0] == True:
+            fn.message()
             print('Discrepancy found!')
-            print('placeholder')
+            print('ADA:',margin_size,'@', dataid,'\n')
+            print('Now Searching...')
             cursor_ada.execute('INSERT or REPLACE INTO ada VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_ada.commit()
             time.sleep(1)
