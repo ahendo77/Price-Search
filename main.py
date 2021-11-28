@@ -70,14 +70,13 @@ def live_search_selected():
     time.sleep(2.5)
 
     #Establish Database Connection
-    '''message()
+    message()
     print('\nEstablishing Database Connection...\n')
     time.sleep(0.5)
     get.start_rawdb()
-    check.connect_liveprices()
     check.start_discrepancydb()
     print('\nSuccess!')
-    time.sleep(2.5)'''
+    time.sleep(2.5)
     live_search_thread()
 
 '''

@@ -2,6 +2,8 @@ from os import error
 import sqlite3
 import time
 import functions as fn
+import logging
+import threading
 
 
 '''
@@ -13,6 +15,10 @@ live price database and record descrepancies found to
 a seperate database. 
 
 '''
+
+# Threading Sync
+sem = threading.Semaphore()
+
 
 # Setting up database to store discrepancies
 #codes = btc, xrp, ltc, xlm(str for coinspot), ada
@@ -91,7 +97,7 @@ def start_discrepancydb():
 #start_discrepancydb()
 
 # Check for and open connection to Live Price Database
-
+# *** Fairly certain this is now redundant ***
 def connect_liveprices():
     try:
         global session_start
@@ -157,16 +163,17 @@ def check_btc():
         
         #If margin returns true, there is a discrepancy of more than 0.2
         if margin[0] == True:
-            fn.message()
-            print('Discrepancy found!')
-            print('BTC:',margin_size,'@', dataid,'\n')
-            print('Now Searching...')
+            #fn.message()
+            sem.acquire()
+            print('Discrepancy found!\n','BTC:',margin_size,'@', dataid,'\n')
+            #print('Now Searching...')
             cursor_btc.execute('INSERT or REPLACE INTO btc VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_btc.commit()
+            sem.release()
             time.sleep(1)
         elif margin[0] == False:
-            time.sleep(3)
-            return False
+            time.sleep(2)
+            continue
     
 
 # Checks XRP Table for discrepancies
@@ -199,16 +206,18 @@ def check_xrp():
         
         #If margin returns true, there is a discrepancy of more than 0.2
         if margin[0] == True:
-            fn.message()
-            print('Discrepancy found!')
-            print('XRP:',margin_size,'@', dataid,'\n')
-            print('Now Searching...')
+            #fn.message()
+            sem.acquire()
+            print('Discrepancy found!\n','XRP:',margin_size,'@', dataid,'\n')
+            #print('Now Searching...')
             cursor_xrp.execute('INSERT or REPLACE INTO xrp VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_xrp.commit()
+            sem.release()
             time.sleep(1)
+            continue
         elif margin[0] == False:
-            time.sleep(3)
-            return False
+            time.sleep(2)
+            continue
             
         
     
@@ -244,16 +253,18 @@ def check_ltc():
         
         #If margin returns true, there is a discrepancy of more than 0.2
         if margin[0] == True:
-            fn.message()
-            print('Discrepancy found!')
-            print('LTC:',margin_size,'@', dataid,'\n')
-            print('Now Searching...')
+            #fn.message()
+            sem.acquire()
+            print('Discrepancy found!\n','LTC:',margin_size,'@', dataid,'\n')
+            #print('Now Searching...')
             cursor_ltc.execute('INSERT or REPLACE INTO ltc VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_ltc.commit()
+            sem.release()
             time.sleep(1)
+            continue
         elif margin[0] == False:
-            time.sleep(3)
-            return False
+            time.sleep(2)
+            continue
 
 # Checks XLM (STR Coinspot) Table for discrepancies
 
@@ -286,16 +297,18 @@ def check_xlm():
         
         #If margin returns true, there is a discrepancy of more than 0.2
         if margin[0] == True:
-            fn.message()
-            print('Discrepancy found!')
-            print('XLM:',margin_size,'@', dataid,'\n')
-            print('Now Searching...')
+            #fn.message()
+            sem.acquire()
+            print('Discrepancy found!\n','XLM:',margin_size,'@', dataid,'\n')
+            #print('Now Searching...')
             cursor_xlm.execute('INSERT or REPLACE INTO xlm VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_xlm.commit()
+            sem.acquire()
             time.sleep(1)
+            continue
         elif margin[0] == False:
-            time.sleep(3) 
-            return False
+            time.sleep(2)
+            continue
 
 # Checks ADA (CoinJar doesn't sell) Table for discrepancies
 
@@ -329,14 +342,16 @@ def check_ada():
         
         #If margin returns true, there is a discrepancy of more than 0.2 *** MARGIN HAS TEMPORARY LOW FOR TESTING ***
         if margin[0] == True:
-            fn.message()
-            print('Discrepancy found!')
-            print('ADA:',margin_size,'@', dataid,'\n')
-            print('Now Searching...')
+            #fn.message()
+            sem.acquire()
+            print('Discrepancy found!\n','ADA:',margin_size,'@', dataid,'\n')
+            #print('Now Searching...')
             cursor_ada.execute('INSERT or REPLACE INTO ada VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_ada.commit()
+            sem.release()
             time.sleep(1)
+            continue
         elif margin[0] == False:
-            time.sleep(3)
-            return False
+            time.sleep(2)
+            continue
 

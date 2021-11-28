@@ -238,7 +238,7 @@ def getdata_ada():
 def check_margin(buy, sell):
     difference = (float(sell)) - (float(buy))
     margin = difference*100/(float(buy))
-    if margin >= 0.2: # *** TEMPORARY CHANGE LATER ***
+    if margin >= -0.2: # *** TEMPORARY CHANGE LATER ***
         list = [True, margin]
         return list
     else:
@@ -246,20 +246,18 @@ def check_margin(buy, sell):
         return list
 
 def check_margin_size(margin):
-    if margin >= 0.5:
+    if margin >= 0.2:
+        return 'Very Minor'
+    elif margin >= 0.5:
         return 'Minor'
-    elif margin >= 0.7:
-        return 'Moderate'
     elif margin >= 1:
-        return 'Signifcant'
+        return 'Moderate'
     elif margin >= 2:
-        return 'Extreme'
-    elif margin >= 3:
-        return 'Holy Shit'
+        return 'Large'
     elif margin >= 5:
-        return 'Well fuck me'
+        return 'Very Large'
     elif margin >= 10:
-        return 'Brb buying a lambo'
+        return 'Extreme'
 
 
 global os_name

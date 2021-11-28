@@ -22,7 +22,7 @@ def start_rawdb():
         global conn
         conn = sqlite3.connect('raw_data.db')
         cursor = conn.cursor()
-        print('Live Price Connection 1 Successful')
+        print('Live Price Connection Successful')
         time.sleep(0.3)
     except:
         print('Database Error:', error)
