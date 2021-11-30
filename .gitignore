@@ -2,3 +2,8 @@ __pycache__/functions.cpython-39.pyc
 __pycache__/main.cpython-39.pyc
 .vscode/settings.json
 __pycache__/functions.cpython-39.pyc
+
+
+raw_data.db
+discrepancy_data.db
+/__pycache__/

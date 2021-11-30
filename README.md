@@ -5,13 +5,23 @@ these discrepancies as they occur with the eventual goal of collecting a dataset
 found. 
 
 ## Features
-### Latest Release: v1.2.0-alpha
+### Latest Release: v2.0.0-alpha
+- Utilises SQL Database to provide detailed and accessible results
+- Multi-Threaded searching allows for fast and consistent recording of discrepancies
 - Actively searches three markets Coinspot, Coinjar and Swiftx
 - Supports 5 assests: Bitcoin, Ripple, Litecoin, Stellar and Cardano*
-- Large enough discrepancies will print to CLI and output to a CSV
 - Exit with CTRL + C to view key infomation and stop search
 
 **Cardano is not sold on Coinjar, comparisons will be made between Swiftx and CoinSpot*
+
+## Using Price-Search
+- Start search by running run.py from there searching will run automatically
+- CTRL + C to stop search and exit
+- Results will be stored in .DB file labled discrepancy_data
+- A program supporting .DB format will be required to access results
+
+### Viewing Results
+If you don't have an easy method of viewing results, I recommend DB Browser for SQLite. It's open source and user friendly, can be accessed at https://sqlitebrowser.org/ 
 
 ## In Progress
 - [ ] A robust and detailed system for tracking and recording discrepancies
