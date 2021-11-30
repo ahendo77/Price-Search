@@ -17,8 +17,8 @@ a seperate database.
 '''
 
 # Logging Config
-logging.basicConfig(filename='log.txt', level=logging.INFO, format='%(asctime)s %(message)s')
-logging.root.setLevel(level=logging.NOTSET)
+logging.basicConfig()
+logging.root.setLevel(level=logging.INFO)
 
 
 # Setting up database to store discrepancies
@@ -137,7 +137,7 @@ Rows returned from database are as follows:
 
 def check_btc():
     # Needs seperate SQL connection for each thread
-    logging.info('Starting BTC1')
+    #logging.debug('Starting BTC1')
     conn_btc = sqlite3.connect('discrepancy_data.db') # Connection to discrepancy database
     cursor_btc = conn_btc.cursor()
 
@@ -165,7 +165,7 @@ def check_btc():
         
         #If margin returns true, there is a discrepancy of more than 0.2
         if margin[0] == True:
-            logging.info('Starting BTC2')
+            #logging.debug('Starting BTC2')
             cursor_btc.execute('INSERT or REPLACE INTO btc VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_btc.commit()
             # Print does not work right across threads, this will have to do instead
@@ -180,7 +180,7 @@ def check_btc():
 # Checks XRP Table for discrepancies
 def check_xrp():
     # Needs seperate SQL connection for each thread
-    logging.info('Starting XRP1')
+    #logging.debug('Starting XRP1')
     conn_xrp = sqlite3.connect('discrepancy_data.db')
     cursor_xrp = conn_xrp.cursor()
 
@@ -208,7 +208,7 @@ def check_xrp():
         
         #If margin returns true, there is a discrepancy of more than 0.2
         if margin[0] == True:
-            logging.info('Starting XRP2')
+            #logging.debug('Starting XRP2')
             cursor_xrp.execute('INSERT or REPLACE INTO xrp VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_xrp.commit()
             # Print does not work right across threads, this will have to do in the meantime
@@ -227,7 +227,7 @@ def check_xrp():
 
 def check_ltc():
     # Needs seperate SQL connection for each thread
-    logging.info('Starting LTC1')
+    #logging.debug('Starting LTC1')
     conn_ltc = sqlite3.connect('discrepancy_data.db')
     cursor_ltc = conn_ltc.cursor()
 
@@ -255,7 +255,7 @@ def check_ltc():
         
         #If margin returns true, there is a discrepancy of more than 0.2
         if margin[0] == True:
-            logging.info('Starting LTC2')
+            #logging.debug('Starting LTC2')
             cursor_ltc.execute('INSERT or REPLACE INTO ltc VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_ltc.commit()
             # Print does not work right across threads, this will have to do instead
@@ -271,7 +271,7 @@ def check_ltc():
 
 def check_xlm():
     # Needs seperate SQL connection for each thread
-    logging.info('Starting XLM1')
+    # logging.debug('Starting XLM1')
     conn_xlm = sqlite3.connect('discrepancy_data.db')
     cursor_xlm = conn_xlm.cursor()
 
@@ -299,7 +299,7 @@ def check_xlm():
         
         #If margin returns true, there is a discrepancy of more than 0.2
         if margin[0] == True:
-            logging.info('Starting XLM2')
+            # logging.debug('Starting XLM2')
             cursor_xlm.execute('INSERT or REPLACE INTO xlm VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_xlm.commit()
             # Print does not work right across threads, this will have to do instead
@@ -315,7 +315,7 @@ def check_xlm():
 
 def check_ada():
     # Need seperate SQL connections for each thread
-    logging.info(str('Starting ADA1'))
+    #logging.debug(str('Starting ADA1'))
     conn_ada = sqlite3.connect('discrepancy_data.db')
     cursor_ada = conn_ada.cursor()
 
@@ -344,7 +344,7 @@ def check_ada():
         
         #If margin returns true, there is a discrepancy of more than 0.2 *** MARGIN HAS TEMPORARY LOW FOR TESTING ***
         if margin[0] == True:
-            logging.info(str('Starting ADA2'))
+            #logging.debug(str('Starting ADA2'))
             cursor_ada.execute('INSERT or REPLACE INTO ada VALUES(?, ?, ?, ?, ?, ?, ?)', (dataid, margin[1], prices_buy[0]['price'], prices_sell[0]['price'], prices_buy[0]['market'], prices_sell[0]['market'], margin_size))
             conn_ada.commit()
             # Print does not work right across threads, this will have to do instead

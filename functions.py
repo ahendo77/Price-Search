@@ -238,7 +238,7 @@ def getdata_ada():
 def check_margin(buy, sell):
     difference = (float(sell)) - (float(buy))
     margin = difference*100/(float(buy))
-    if margin >= -0.2: # *** TEMPORARY CHANGE LATER ***
+    if margin >= 0.2: # *** SHOULD BE 0.2 ***
         list = [True, margin]
         return list
     else:
