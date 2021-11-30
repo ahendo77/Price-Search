@@ -96,6 +96,7 @@ def live_search_thread():
     #Creating threads to get prices for each coin
     try:
         btcthread_get = threading.Thread(target=get.btc_thread)
+        btcthread_get.daemon = True
         btcthread_get.start()
         print('\nBTC Live Price Thread Now Working')
         time.sleep(0.5)
@@ -105,6 +106,7 @@ def live_search_thread():
     
     try:
         xrpthread_get = threading.Thread(target=get.xrp_thread)
+        xrpthread_get.daemon = True
         xrpthread_get.start()
         print('XRP Live Price Thread Now Working')
         time.sleep(0.5)
@@ -114,6 +116,7 @@ def live_search_thread():
 
     try:
         ltcthread_get = threading.Thread(target=get.ltc_thread)
+        ltcthread_get.daemon = True
         ltcthread_get.start()
         print('LTC Live Price Thread Now Working')
         time.sleep(0.5)
@@ -123,6 +126,7 @@ def live_search_thread():
     
     try:
         xlmthread_get = threading.Thread(target=get.xlm_thread)
+        xlmthread_get.daemon = True
         xlmthread_get.start()
         print('XLM Live Price Thread Now Working')
         time.sleep(0.5)
@@ -132,6 +136,7 @@ def live_search_thread():
 
     try:
         adathread_get = threading.Thread(target=get.ada_thread)
+        adathread_get.daemon = True
         adathread_get.start()
         print('ADA Live Price Thread Now Working')
         time.sleep(0.5)
@@ -151,6 +156,7 @@ def live_check_thread():
 
     try:
         btcthread_check = threading.Thread(target=check.check_btc)
+        btcthread_check.daemon = True
         btcthread_check.start()
         print('\nBTC Check Thread Now Working')
         time.sleep(0.5)
@@ -160,6 +166,7 @@ def live_check_thread():
     
     try:
         xrpthread_check = threading.Thread(target=check.check_xrp)
+        xrpthread_check.daemon = True
         xrpthread_check.start()
         print('XRP Check Thread Now Working')
         time.sleep(0.5)
@@ -169,6 +176,7 @@ def live_check_thread():
     
     try:
         ltcthread_check = threading.Thread(target=check.check_ltc)
+        ltcthread_check.daemon = True
         ltcthread_check.start()
         print('LTC Check Thread Now Working')
         time.sleep(0.5)
@@ -178,6 +186,7 @@ def live_check_thread():
     
     try:
         xlmthread_check = threading.Thread(target=check.check_xlm)
+        xlmthread_check.daemon = True
         xlmthread_check.start()
         print('XLM Check Thread Now Working')
         time.sleep(0.5)
@@ -187,6 +196,7 @@ def live_check_thread():
     
     try:
         adathread_check = threading.Thread(target=check.check_ada)
+        adathread_check.daemon = True
         adathread_check.start()
         print('ADA Check Thread Now Working')
         time.sleep(0.5)
@@ -197,8 +207,22 @@ def live_check_thread():
     print('\nAll Threads Now Working')
     print('Now Searching...\n')
     
+def stop_threads():
+    try:
+      live_search_thread.btcthread_get.stop()
+      live_search_thread.xrpthread_get.stop()
+      live_search_thread.ltcthread_get.stop()
+      live_search_thread.xlmthread_get.stop()
+      live_search_thread.adathread_get.stop()
+      live_check_thread.btcthread_check.stop()
+      live_check_thread.xrpthread_check.stop()
+      live_check_thread.ltcthread_check.stop()
+      live_check_thread.xlmthread_check.stop()
+      live_check_thread.adathread_check.stop()
+    except:
+        print('Error Stopping Threads')
 
 
 
 #Here for testing
-start()
+#start()

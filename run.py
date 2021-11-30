@@ -2,6 +2,7 @@ from main import *
 import main as m
 import functions as fn
 import signal
+import logging
 
 '''
 Price-Search Copyright (C) 2021 Alex Henderson
@@ -12,25 +13,27 @@ stopping threads and search when user wishes to stop.
 
 '''
 
-
+# Exit handler will need to stop all threads
 def exit_handler(signum, frame):
-    
-    question = input('\nFinish now? y/n\n')
     while True:
-        if question == 'y' or question == 'Y':
-            break
-        elif question == 'n' or question == 'n':
-            print('Now Searching...\n')
-            return None
+        logging.root.setLevel(logging.WARNING)
+        fn.message()
+        print('Are you sure you want to exit?')
+        if fn.user_query(input()) == True:
+            print('\nStopping Threads...')
+            m.stop_threads()
+            print('\nThreads Stopped', '\nNow Exiting view Discrepancy.db for results')
+            time.sleep(2.5)
+            print('\nExiting...')
+            exit()
         else:
-            print('Please enter y or n')
-            question = input()
-            continue
-    time.sleep(2)
-    exit(0)
+            message()
+            logging.root.setLevel(logging.INFO)
+            break
 
 signal.signal(signal.SIGINT, exit_handler)
 
 if __name__ == '__main__':
-    m.main()
+    while True:
+        m.start()
     
