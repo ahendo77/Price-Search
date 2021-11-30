@@ -94,27 +94,6 @@ def start_discrepancydb():
         size_catagory TEXT);'''
     )
 
-#Here for testing 
-#start_discrepancydb()
-
-# Check for and open connection to Live Price Database
-# *** Fairly certain this is now redundant ***
-def connect_liveprices():
-    try:
-        global session_start
-        global conn_live
-        global cursor_live
-        session_start = time.strftime('%H:%M:%S')
-        conn_live = sqlite3.connect('raw_data.db')
-        cursor_live = conn_live.cursor()
-        print('Live Price Connection 2 Successful')
-        time.sleep(0.5)
-    except:
-        print('Error with database:', error)
-        exit()
-
-#Here for testing
-#connect_liveprices()
 
 '''
 Section here fetches the first decending row

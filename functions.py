@@ -38,25 +38,6 @@ def user_query(response):
                 continue
 
 
-
-def user_input():
-    s = time.localtime()
-    start_time = time.strftime("%H:%M:%S", s)
-    question = input('\nAPI Status OK, begin searching? Y/N\n')
-    
-    while True:
-        if question == 'y' or question == 'Y':
-            print('\nNow Searching...','\n')
-            print('Search Initiated at:', start_time,'\n')
-            break
-        elif question == 'n' or question == 'N':
-            exit()
-        else:
-            print('Please enter y or n')
-            question = input()
-            continue
-
-
 #Check API Status of Exchanges
 
 def checkstatus_marketapi():

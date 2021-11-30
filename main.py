@@ -151,7 +151,7 @@ def live_search_thread():
 
 def live_check_thread():
     message()
-    print('\nLive Check Threads Now Starting')
+    print('\nLive Check Threads Now Starting...')
 
     # Creating Threads to Check with each coin
 
@@ -210,7 +210,3 @@ def live_check_thread():
     while True:
         time.sleep(0.5)
     
-
-
-#Here for testing
-#start()

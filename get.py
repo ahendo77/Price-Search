@@ -79,9 +79,6 @@ def start_rawdb():
     ''')
 
 
-#Here for testing
-#start_rawdb()
-
 '''
 
 Threads make request for market data for each asset and write it to the database.
@@ -145,6 +142,3 @@ def ada_thread():
         conn_ada.commit()
         time.sleep(2)
 
-# Here for testing
-#while True:
-#btc_thread()
