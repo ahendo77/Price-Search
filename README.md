@@ -15,7 +15,8 @@ found.
 **Cardano is not sold on Coinjar, comparisons will be made between Swiftx and CoinSpot*
 
 ## Using Price-Search
-- Start search by running run.py from there searching will run automatically 
+- Start search by running run.py from there searching will run automatically
+- CTRL + C to stop search and exit
 - Results will be stored in .DB file labled discrepancy_data
 - A program supporting .DB format will be required to access results
 
