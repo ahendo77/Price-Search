@@ -41,6 +41,7 @@ def start():
 
     # Later versions will inlcude options to view database data and perfom basic analysis
     while True:
+        print('\nExit with CTRL + C')
         print('\nPlease select desired option:\n', '\n1. Live Search')
         response = int(input())
         if response == 1:
@@ -206,22 +207,9 @@ def live_check_thread():
 
     print('\nAll Threads Now Working')
     print('Now Searching...\n')
+    while True:
+        time.sleep(0.5)
     
-def stop_threads():
-    try:
-      live_search_thread.btcthread_get.stop()
-      live_search_thread.xrpthread_get.stop()
-      live_search_thread.ltcthread_get.stop()
-      live_search_thread.xlmthread_get.stop()
-      live_search_thread.adathread_get.stop()
-      live_check_thread.btcthread_check.stop()
-      live_check_thread.xrpthread_check.stop()
-      live_check_thread.ltcthread_check.stop()
-      live_check_thread.xlmthread_check.stop()
-      live_check_thread.adathread_check.stop()
-    except:
-        print('Error Stopping Threads')
-
 
 
 #Here for testing
