@@ -227,15 +227,15 @@ def check_margin(buy, sell):
         return list
 
 def check_margin_size(margin):
-    if margin >= 0.2:
+    if 0.2 <= margin <= 0.49:
         return 'Very Minor'
-    elif margin >= 0.5:
+    elif 0.5 <= margin <= 0.99:
         return 'Minor'
-    elif margin >= 1:
+    elif 1 <= margin <= 1.99:
         return 'Moderate'
-    elif margin >= 2:
+    elif 2 <= margin <= 2.99:
         return 'Large'
-    elif margin >= 5:
+    elif 3 <= margin <= 9.99:
         return 'Very Large'
     elif margin >= 10:
         return 'Extreme'
