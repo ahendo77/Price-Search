@@ -8,7 +8,7 @@ import logging
 '''
 
 Price-Search Copyright (C) 2021 Alex Henderson
-Version Alpha 2.0.0
+Version Alpha 2.0.1
 
 FUNCTIONS file serves to store functions used by other
 parts of the program for ogransiation and ease of use.
@@ -274,7 +274,7 @@ def message():
     # Clear should work on both not sure why os can't execute it
     if os_name == 'Windows':
         os.system('cls')
-        print('Price-Search (C) 2021 Alex Henderson','\nV2.0.0 Alpha\n')
+        print('Price-Search (C) 2021 Alex Henderson','\nV2.0.1 Alpha\n')
     elif os_name == 'Linux':
         os.system('clear')
-        print('Price-Search (C) 2021 Alex Henderson','\nV2.0.0 Alpha\n')
+        print('Price-Search (C) 2021 Alex Henderson','\nV2.0.1 Alpha\n')

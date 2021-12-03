@@ -6,7 +6,7 @@ import functions as fn
 
 '''
 Price-Search Copyright (C) 2021 Alex Henderson
-Version Alpha 2.0.0
+Version Alpha 2.0.1
 
 GET file holds database connection and functions to request pricing
 data and write to the database.

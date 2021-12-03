@@ -11,7 +11,7 @@ import logging
 
 '''
 Price-Search Copyright (C) 2021 Alex Henderson
-Version Alpha 2.0.0
+Version Alpha 2.0.1
 
 MAIN file organises threading to use functions in GET and CHECK
 to simultaneously perfom all program functions. Including: 
@@ -32,10 +32,10 @@ def message():
     # Clear should work on both not sure why os can't execute it
     if os_name == 'Windows':
         os.system('cls')
-        print('Price-Search (C) 2021 Alex Henderson','\nV2.0.0 Alpha')
+        print('Price-Search (C) 2021 Alex Henderson','\nV2.0.1 Alpha')
     elif os_name == 'Linux':
         os.system('clear')
-        print('Price-Search (C) 2021 Alex Henderson','\nV2.0.0 Alpha')
+        print('Price-Search (C) 2021 Alex Henderson','\nV2.0.1 Alpha')
 
 # Serve as general program start function (maybe?)
 def start(): 

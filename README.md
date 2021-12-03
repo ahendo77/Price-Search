@@ -5,7 +5,7 @@ these discrepancies as they occur with the eventual goal of collecting a dataset
 found. 
 
 ## Features
-### Latest Release: v2.0.0-alpha
+### Latest Release: v2.0.1-alpha
 - Utilises SQL Database to provide detailed and accessible results
 - Multi-Threaded searching allows for fast and consistent recording of discrepancies
 - Actively searches three markets Coinspot, Coinjar and Swiftx
