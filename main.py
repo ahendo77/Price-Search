@@ -6,6 +6,8 @@ import time
 import sqlite3
 import os
 import platform
+import requests
+import logging
 
 '''
 Price-Search Copyright (C) 2021 Alex Henderson
@@ -38,6 +40,14 @@ def message():
 # Serve as general program start function (maybe?)
 def start(): 
     message()
+
+    # Check Internet Connection
+    try:
+        requests.get('https://www.google.com')
+    except requests.ConnectionError:
+        print('\n')
+        logging.error('No Internet Connection, please check network and try again')
+        exit()
 
     # Later versions will inlcude options to view database data and perfom basic analysis
     while True:
